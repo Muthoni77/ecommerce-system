@@ -1,4 +1,6 @@
 import { useState } from "react"
+import logo from "../image1.jpg"
+
 
 function Login() {
     const [email,  setEmail] = useState("");
@@ -7,8 +9,22 @@ function Login() {
  
  
     return (
-    <div className='row m-0 p-5 ' > 
-        <form className='col-sm-5 mx-auto border'>
+     
+<div className="container">
+    <div className='row ' >
+      <div className="col-12">
+        <h1 id="form_heading"className=""> Welcome back!</h1>
+        <p>Please enter your details</p>
+      </div> 
+
+     
+  {/* end of column 1 */}
+ 
+  <div class="col-md-6"> 
+  <img src={logo} className="login-image" alt="image" width="100%"/>
+  </div>  
+   <div class="col-md-6 ">
+        <form className='col'>
     <div className="form-group">
       <label for="exampleInputEmail1">Email address</label>
      
@@ -32,7 +48,14 @@ setEmail(e.target.value)
     </div>
     
     <button type="submit" class="btn btn-primary">Submit</button>
-  </form></div>
+  </form> </div>
+
+  </div>
+  </div>
+
+
+
+     
   )
 }
 

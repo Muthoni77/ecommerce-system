@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+/* .form-group{
+  .row {
+    display: flex;
+  }
+  
+    .col {
+      flex: 50%;
+      height: 500px;
+  }} */
+  #form_heading{
+    text-transform: uppercase;
+  }
+  /* .container-bkg{
+    background: url( "./image1.jpg") no-repeat center;
+    background-size: cover;
+  }
+   */
+  

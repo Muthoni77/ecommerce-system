@@ -42,7 +42,7 @@ setEmail(e.target.value)
     <div className="form-group">
       <label for="exampleInputPassword1"> Confirm Password</label>
      
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" value={password} onChange ={(e)=>{
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="confirmPassword" value={password} onChange ={(e)=>{
         setPassword(e.target.value)
       }}/>
     </div>
