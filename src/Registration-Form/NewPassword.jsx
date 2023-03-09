@@ -1,33 +1,19 @@
 import { useState } from "react";
 
-function Login() {
-  const [email, setEmail] = useState("");
+function NewPassword() {
+
   const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
   return (
     <div className=" w-full h-full flex justify-center items-center p-8">
       <div className=" w-2/4 text-black">
         <h1 className=" mb-12 font-bold " style={{ width: "50%" }}>
-          Login
+          Write your new Password
         </h1>
         <form className=" flex flex-col">
-          <div className=" flex flex-col">
-            <label className=" text-left" for="email">
-              Email
-            </label>
-            <input
-              className=" mb-5 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
-              id="Email"
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-          </div>
           <div className="flex flex-col">
             <label className=" text-left" for="password">
-              Password
+             New Password
             </label>
             <input
               className=" mb-5 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
@@ -40,17 +26,28 @@ function Login() {
               }}
             />
           </div>
+          <div className=" flex flex-col">
+            <label className=" text-left" for="confirmPassword">
+              Confirm Pssword
+            </label>
+            <input
+              className=" mb-5 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
+              id="ConfirmPassword"
+              type="text"
+              placeholder="ConfirmPsaaword"
+              value={confirmPassword}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+              }}
+            />
+          </div>
           <div className="flex flex-col">
             <input
               type={"submit"}
-              value="Sign in"
+              value="Reset Password"
               className=" mb-5 h-14 w-96 bg-red-300 rounded-xl"
             />
-            <input
-              type={"submit"}
-              value="Sign up"
-              className="h-14 w-96 border-red-300 border-[1px] rounded-xl"
-            />
+           
           </div>
         </form>
       </div>
@@ -58,4 +55,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default NewPassword;
