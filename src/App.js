@@ -6,6 +6,8 @@ import Signup from './Registration-Form/Signup';
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
 import NewPassword from './Registration-Form/NewPassword';
 import ResetPassword from './Registration-Form/ResetPassword';
+import Profile from './Registration-Form/Profile';
+import SideNav from './Pages/SideNav';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/product" element={<Product />} />
           <Route path="/newpassword" element={<NewPassword />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/sidenav" element={<SideNav />} />
         </Routes>
       </Router>
     </div>
