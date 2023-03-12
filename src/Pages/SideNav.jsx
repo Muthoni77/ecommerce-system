@@ -24,14 +24,14 @@ function SideNav() {
           src="https://icons.veryicon.com/png/o/healthcate-medical/medical-health-1/quality-control.png"
           alt="control"
           className={`absolute cursor-pointer rounded-full
-        -right-3 top-9  w-7  border-2 border-dark-purple  ${
+        -right-3 top-9    border-2 border-dark-purple  ${
           !open && "rotate-180"
         }`}
           onClick={() => setOpen(!open)}
         />
         <div className="flex gap-x-4  items-center">
           <img
-            src="./src/assets/logo.jpg"
+            src="https://images-platform.99static.com//4tpaWvCabuH2M9wrBBP8A6ijLOs=/61x1566:1437x2942/fit-in/500x500/projects-files/52/5212/521297/6f8a4b28-faed-4b1b-b21a-4f1274d8f1f3.jpg"
             alt="logo"
             className={`cursor-pointer duration-500 w-7 ${
               open && "rotate-[360deg]"
