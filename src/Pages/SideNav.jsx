@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 function SideNav() {
   const [open, setOpen] = useState(true);
-  const Menus=[
-     { title: "Dashboard", src: "Chart_fill" },
+  const Menus = [
+    { title: "Dashboard", src: "Chart_fill" },
     { title: "Inbox", src: "Chat" },
     { title: "Accounts", src: "User", gap: true },
     { title: "Schedule ", src: "Calendar" },
@@ -12,7 +12,7 @@ function SideNav() {
     { title: "Files ", src: "Folder", gap: true },
     { title: "Setting", src: "Setting" },
   ];
-  
+
   return (
     <div className="flex">
       <div
@@ -31,7 +31,7 @@ function SideNav() {
         />
         <div className="flex gap-x-4  items-center">
           <img
-            src="https://images-platform.99static.com//4tpaWvCabuH2M9wrBBP8A6ijLOs=/61x1566:1437x2942/fit-in/500x500/projects-files/52/5212/521297/6f8a4b28-faed-4b1b-b21a-4f1274d8f1f3.jpg"
+            src="./src/assets/logo.jpg"
             alt="logo"
             className={`cursor-pointer duration-500 w-7 ${
               open && "rotate-[360deg]"
