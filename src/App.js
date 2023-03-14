@@ -7,6 +7,8 @@ import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
 
 import Profile from './Registration-Form/Profile';
 import SideNav from './Pages/SideNav';
+import Forgotpassword from './Registration-Form/Forgotpassword';
+import Resetpassword from './Registration-Form/Resetpassword';
 
 function App() {
   return (
@@ -14,13 +16,15 @@ function App() {
       {/* <h1 className="text-3xl font-bold underline bg-slate-600">
        Hello world!
      </h1> */}
+     
 
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/product" element={<Product />} />
-          
+           <Route path="/forgotpassword" element={<Forgotpassword />} />
+           <Route path="/resetpassword" element={<Resetpassword />} />
           
           <Route path="/profile" element={<Profile />} />
           <Route path="/sidenav" element={<SideNav />} />

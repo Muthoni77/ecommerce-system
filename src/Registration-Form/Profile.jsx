@@ -3,7 +3,7 @@ import React from "react";
 function Profile() {
   return (
     // <div className=" w-full h-full flex justify-center items-center p-8">
-    <div className="flex">
+    <div className="flex ">
       <div className=" w-2/4 text-black  p-14">
         <img
           src="https://www.freeiconspng.com/thumbs/profile-icon-png/account-profile-user-icon--icon-search-engine-10.png"

@@ -24,7 +24,7 @@ function SideNav() {
           src="https://icons.veryicon.com/png/o/healthcate-medical/medical-health-1/quality-control.png"
           alt="control"
           className={`absolute cursor-pointer rounded-full
-        -right-3 top-9    border-2 border-dark-purple  ${
+        -right-3 top-9 w-7   border-2 border-dark-purple  ${
           !open && "rotate-180"
         }`}
           onClick={() => setOpen(!open)}
