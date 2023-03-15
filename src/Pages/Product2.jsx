@@ -73,7 +73,11 @@ function Product() {
       <section className="bg-white py-8">
         <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
           <nav id="store" className="w-full z-30 top-0 px-6 py-1">
-            <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3"></div>
+            <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
+                            <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
+
+</div>
+            </div>
           </nav>
           <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
             {Items.map((product) => (
