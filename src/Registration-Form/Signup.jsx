@@ -1,8 +1,8 @@
 import { useState } from "react"
 
 function  Signup() {
-    const [firstname,  setFirstname] = useState("");
-     const [lastname, setLastname] = useState("");
+    const [username,  setUsername] = useState("");
+     const [phoneNo, setPhoneNo] = useState("");
     const [email,  setEmail] = useState("");
     const [password,  setPassword] = useState("");
     
@@ -10,46 +10,40 @@ function  Signup() {
  
  
     return (
-      <div
-      className="h-screen w-full p-5 pt-8 bg-no-repeat bg-cover  "
-      style={{
-        backgroundImage:
-          "url(https://images.unsplash.com/photo-1529539795054-3c162aab037a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9naW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60)",
-      }}
-    >
-      <div className=" w-full h-full flex justify-center items-center p-8">
-        <div className=" w-2/4 text-black">
-          <h1 className=" mb-12 font-bold " style={{ width: "50%" }}>
-            SignUp
-          </h1>
+      <div className=" flex justify-center items-center mt-20 ">
+        <div className=" text-black">
+          <h1 className=" mb-6 font-bold ">SignUp</h1>
+          <p className="mb-12">
+            Already have an account? <a href="#!">Sign in</a>
+          </p>
           <form className=" flex flex-col">
             <div className=" flex flex-col">
-              <label className=" text-left" for="firstName">
-                FirstName
+              <label className=" text-left" for="userName">
+                Username
               </label>
               <input
-                className=" mb-5 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
-                id="Firstname"
+                className=" mb-4 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
+                id="userName"
                 type="text"
-                placeholder="Firstname"
-                value={firstname}
+                placeholder="userName"
+                value={username}
                 onChange={(e) => {
-                  setFirstname(e.target.value);
+                  setUsername(e.target.value);
                 }}
               />
             </div>
-            <div className=" flex flex-col">
-              <label className=" text-left" for="lastName">
-                LastNname
-              </label>
-              <input
-                className=" mb-5 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
-                id="Lastname"
-                type="text"
-                placeholder="Lastname"
-                value={lastname}
+             <div className="flex flex-col">
+            <label className=" text-left" for="phoneNo">
+              Phone No
+            </label>
+            <input
+              className=" mb-3 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
+              id="phone no"
+              type="number"
+              placeholder="PhoneNo"
+                value={phoneNo}
                 onChange={(e) => {
-                  setLastname(e.target.value);
+                  setPhoneNo(e.target.value);
                 }}
               />
             </div>
@@ -59,7 +53,7 @@ function  Signup() {
                 Email
               </label>
               <input
-                className=" mb-5 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
+                className=" mb-4 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
                 id="Email"
                 type="text"
                 placeholder="Email"
@@ -74,7 +68,7 @@ function  Signup() {
                 Password
               </label>
               <input
-                className=" mb-5 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
+                className=" mb-4 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
                 id="password"
                 type="text"
                 placeholder="Password"
@@ -90,11 +84,9 @@ function  Signup() {
                 value="Sign up"
                 className=" mb-5 h-14 w-96 bg-blue-300 rounded-xl"
               />
-             
             </div>
           </form>
         </div>
-      </div>
       </div>
     );
 }

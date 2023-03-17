@@ -11,6 +11,7 @@ import Resetpassword from './Registration-Form/Resetpassword';
 import Header from './Components/Header';
 
 import { useEffect, useState } from 'react';
+import Code from './Registration-Form/Code';
 
 function App() {
 //   const[ products, setProducts] = useState({});
@@ -32,7 +33,9 @@ function App() {
       <div className="bg-red-300">
         <Header />
       </div>
-      <Product/>
+      <div className="">
+        <Product />
+      </div>
 
       <Router>
         <Routes>
@@ -41,6 +44,7 @@ function App() {
           {/* <Route path="/product" element={<Product />} /> */}
           <Route path="/forgotpassword" element={<Forgotpassword />} />
           <Route path="/resetpassword" element={<Resetpassword />} />
+          <Route path="/code" element={<Code />} />
 
           <Route path="/profile" element={<Profile />} />
           <Route path="/sidenav" element={<SideNav />} />

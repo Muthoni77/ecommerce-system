@@ -2,18 +2,13 @@ import React from "react";
 
 function Forgotpassword() {
   return (
-     <div
-      className="h-screen w-full p-5 pt-8 bg-no-repeat bg-cover  "
-      style={{
-        backgroundImage:
-          "url(https://images.unsplash.com/photo-1529539795054-3c162aab037a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9naW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60)",
-      }}
-    >
-    <div className=" w-full h-full flex justify-center items-center p-8">
-      <div className=" w-2/4 text-black">
-        <h1 className=" mb-12 font-bold " style={{ width: "50%" }}>
-          Forgot password?
-        </h1>
+    <div className="  flex justify-center items-center mt-20 ">
+      <div className="  ">
+        <h1 className=" mb-6 font-bold ">Forgot password?</h1>
+        <p className="mb-12 text-grey">
+          Enter your email to receive your password reset link
+        </p>
+
         <form className=" flex flex-col">
           <div className=" flex flex-col">
             <label className=" text-left" for="email">
@@ -29,13 +24,17 @@ function Forgotpassword() {
           <div className="flex flex-col">
             <input
               type={"submit"}
-              value="Reset password"
-              className=" mb-5 h-14 w-96 bg-blue-300 rounded-xl"
+              value="Request password reset"
+              className=" mb-4 h-14 w-96 bg-blue-300 rounded-xl"
             />
+          </div>
+          <div className="mb-4">
+            
+               <a href="#!">I remembered my password</a>
+          
           </div>
         </form>
       </div>
-    </div>
     </div>
   );
 }

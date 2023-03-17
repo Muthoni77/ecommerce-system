@@ -2,17 +2,13 @@ import React from "react";
 
 function Resetpassword() {
   return (
-    <div
-      className="h-screen w-full p-5 pt-8 bg-no-repeat bg-cover  "
-      style={{
-        backgroundImage:
-          "url(https://images.unsplash.com/photo-1529539795054-3c162aab037a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9naW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60)",
-      }}
-    >
-      <div className=" w-2/4 text-black p-14">
-        <h1 className=" mb-09 font-bold " style={{ width: "50%" }}>
-          Reset Password
-        </h1>
+    <div className="   flex justify-center items-center mt-20 ">
+      <div className="  text-black ">
+        <h1 className="  font-bold mb-6">Reset Password</h1>
+        <p className="mb-12 w-96">
+          Passwords must contain at least 1 number, 1 letter, 1 special
+          character and at least 8 characters in length.
+        </p>
         <form className=" flex flex-col">
           <div className=" flex flex-col">
             <label className=" text-left" for="newPassword">
