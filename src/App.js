@@ -8,54 +8,51 @@ import Profile from './Registration-Form/Profile';
 import SideNav from './Pages/SideNav';
 import Forgotpassword from './Registration-Form/Forgotpassword';
 import Resetpassword from './Registration-Form/Resetpassword';
-import Header from './Components/Header';
 
-import {  useState } from 'react';
+
+
 import Code from './Registration-Form/Code';
-import Cart from './Components/Cart';
+
+import GlobalState from './Context/GlobalState';
+import ProductsPage from './Pages/Product';
+import CartPage from './Pages/Cart';
 
 function App() {
-  const[ products, setProducts] = useState({});
-    const [filters, setFilters] = useState({});
-     const [isShowcart, setIsShowCart] = useState(false);
-     const[Cart,setCart]= useState({});
+  
+    
+  
+     
+    //  const[Cart,setCart]= useState({});
     
          
 
-            // setProducts(products.data);
-            // setFilters(products.data);
+           // setProducts(products.data);
+             //setFilters(products.data);
             
           
 
 
 
-  const handleAddToCart = (product) => {
-    setCart((prev) => {
-      const findProductInCart = prev.find((item) => item.id === product.id);
+  // const handleAddToCart = (product) => {
+  //   setCart((prev) => {
+  //     const findProductInCart = prev.find((item) => item.id === product.id);
 
-      if (findProductInCart) {
-        return prev.map((item) =>
-          item.id === product.id ? { ...item, amount: item.amount + 1 } : item
-        );
-      }
+  //     if (findProductInCart) {
+  //       return prev.map((item) =>
+  //         item.id === product.id ? { ...item, amount: item.amount + 1 } : item
+  //       );
+  //     }
 
-      // firt
-      return [...prev, { product, amount: 1 }];
-    });
-  };
+  //     // firt
+  //     return [...prev, { product, amount: 1 }];
+  //   });
+  // };
   return (
     <div className="App h-full">
-      <div className="bg-red-300">
-        <Header setIsShowCart={setIsShowCart} />
-      </div>
-      
-      
-      <div className="">
-        <Product/>
-        
-      </div>
-      <div>{isShowcart && <Cart setIsShowCart={setIsShowCart} />}</div>
-      {/* HANDLE ADD TO CART */}
+      <GlobalState>
+        <ProductsPage />
+        <CartPage />
+      </GlobalState>
 
       <Router>
         <Routes>
@@ -69,6 +66,10 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/sidenav" element={<SideNav />} />
         </Routes>
+        {/* <GlobalState> */}
+        {/* <Route  path="/cart" element={<CartPage/>} />
+          <Route  path="/" element={<ProductsPage/>} /> */}
+        {/* </GlobalState> */}
       </Router>
     </div>
   );

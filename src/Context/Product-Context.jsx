@@ -1,13 +1,8 @@
-import React, { useState } from 'react'
-function Product({ product, handleAddToCart }) {
-  //const Product = ({ product, handleAddToCart }) =>{
-  const DollarUsd = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "Ksh",
-  });
+import React from "react";
 
-  const Items = [
-    {
+export default React.createContext({
+  products: [
+     {
       id: 1,
       name: "Product Name",
       href: "#",
@@ -78,39 +73,9 @@ function Product({ product, handleAddToCart }) {
       category: "Laptop",
       imageSrc:
         "https://images.unsplash.com/photo-1551431009-a802eeec77b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=400&q=80",
-    },
-  ];
-   const [products, setProducts] = useState(Items);
-
-  return (
-    <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-      {Items.map((product) => (
-        <a
-      
-          key={product.id}
-          href={product.href}
-        >
-          <img
-            className="hover:grow hover:shadow-lg"
-            src={product.imageSrc}
-            alt="products"
-          />
-          <div className="pt-3 flex items-center justify-between">
-            <p className="">{product.name}</p>
-          </div>
-          <p className="pt-1 text-red-700 font-bold">
-            {DollarUsd.format(product.price)}
-          </p>
-          <button
-            onClick={() => handleAddToCart(product)}
-            className="bg-gray-300 w-full  rounded-lg py-1 mt-auto mb-2 hover:bg-gray-500 hover:text-white"
-          >
-            Buy now
-          </button>
-        </a>
-      ))}
-    </div>
-  );
-};
-
-export default Product
+    }
+  ],
+  cart: [],
+  addProductToCart: (product) => {},
+  removeProductFromCart: (productId) => {},
+});

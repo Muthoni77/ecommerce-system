@@ -1,3 +1,12 @@
+// import React from 'react'
+
+// function product4() {
+//   return (
+//     <div>product4</div>
+//   )
+// }
+
+// export default product4
 import React from "react";
 const Product = ({ product, handleAddToCart }) => {
   const DollarUsd = new Intl.NumberFormat("en-US", {
