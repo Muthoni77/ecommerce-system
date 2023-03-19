@@ -10,32 +10,52 @@ import Forgotpassword from './Registration-Form/Forgotpassword';
 import Resetpassword from './Registration-Form/Resetpassword';
 import Header from './Components/Header';
 
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import Code from './Registration-Form/Code';
+import Cart from './Components/Cart';
 
 function App() {
-//   const[ products, setProducts] = useState({});
-//     const [filters, setFilters] = useState({});
+  const[ products, setProducts] = useState({});
+    const [filters, setFilters] = useState({});
+     const [isShowcart, setIsShowCart] = useState(false);
+     const[Cart,setCart]= useState({});
+    
+         
 
-//     useEffect (()=>{
-//       const fetchProducts = async () => {
-//         try{
-// const data = await fetch ('');
-// const products = await data.json;
-//         }
-//         catch(err){
+            // setProducts(products.data);
+            // setFilters(products.data);
+            
           
-//         }
-//       }
-//     },[]);
+
+
+
+  const handleAddToCart = (product) => {
+    setCart((prev) => {
+      const findProductInCart = prev.find((item) => item.id === product.id);
+
+      if (findProductInCart) {
+        return prev.map((item) =>
+          item.id === product.id ? { ...item, amount: item.amount + 1 } : item
+        );
+      }
+
+      // firt
+      return [...prev, { product, amount: 1 }];
+    });
+  };
   return (
     <div className="App h-full">
       <div className="bg-red-300">
-        <Header />
+        <Header setIsShowCart={setIsShowCart} />
       </div>
+      
+      
       <div className="">
-        <Product />
+        <Product/>
+        
       </div>
+      <div>{isShowcart && <Cart setIsShowCart={setIsShowCart} />}</div>
+      {/* HANDLE ADD TO CART */}
 
       <Router>
         <Routes>
