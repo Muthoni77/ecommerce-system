@@ -15,11 +15,13 @@ const CartPage = (props) => {
 
   return (
     <React.Fragment>
-      <Header
-        cartItemNumber={context.cart.reduce((count, curItem) => {
-          return count + curItem.quantity;
-        }, 0)}
-      />
+      <div className="bg-red-300">
+        <Header
+          cartItemNumber={context.cart.reduce((count, curItem) => {
+            return count + curItem.quantity;
+          }, 0)}
+        />
+      </div>
       <main className="cart">
         {context.cart.length <= 0 && <p>No Item in the Cart!</p>}
         <ul>
@@ -28,8 +30,8 @@ const CartPage = (props) => {
               <div>
                 <img
                   className="w-[100px] h-[100px]"
-                   src={cartitem.imageSrc}
-                  alt={cartitem.name}
+                  src={cartItem.imageSrc}
+                  alt={cartItem.name}
                 />
                 <strong>{cartItem.name}</strong> - ${cartItem.price} (
                 {cartItem.quantity})
