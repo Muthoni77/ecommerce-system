@@ -38,7 +38,7 @@ const removeProductFromCart = (productId, state) => {
   return { ...state, cart: updatedCart };
 };
 
-export const shopReducer = (state, action) => {
+export const productReducer = (state, action) => {
   switch (action.type) {
     case ADD_PRODUCT:
       return addProductToCart(action.product, state);

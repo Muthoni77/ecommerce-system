@@ -26,7 +26,12 @@ const CartPage = (props) => {
           {context.cart.map((cartItem) => (
             <li key={cartItem.id}>
               <div>
-                <strong>{cartItem.title}</strong> - ${cartItem.price} (
+                <img
+                  className="w-[100px] h-[100px]"
+                   src={cartitem.imageSrc}
+                  alt={cartitem.name}
+                />
+                <strong>{cartItem.name}</strong> - ${cartItem.price} (
                 {cartItem.quantity})
               </div>
               <div>
@@ -46,6 +51,7 @@ const CartPage = (props) => {
     </React.Fragment>
   );
 };
+
 
 // const mapStateToProps = state => {
 //   return {

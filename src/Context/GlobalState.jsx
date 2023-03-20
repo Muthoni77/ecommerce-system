@@ -1,7 +1,7 @@
 import React, {  useReducer } from "react";
 
 import ProductContext from "./Product-Context";
-import { shopReducer, ADD_PRODUCT, REMOVE_PRODUCT } from "./Reducer";
+import { productReducer, ADD_PRODUCT, REMOVE_PRODUCT } from "./Reducer";
 
 const GlobalState = (props) => {
   const products = [
@@ -79,7 +79,7 @@ const GlobalState = (props) => {
     },
   ];
   // const [cart, setCart] = useState([]);
-  const [cartState, dispatch] = useReducer(shopReducer, { cart: [] });
+  const [cartState, dispatch] = useReducer(productReducer, { cart: [] });
 
   const addProductToCart = (product) => {
     setTimeout(() => {
