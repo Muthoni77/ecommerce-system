@@ -13,6 +13,14 @@ const CartPage = (props) => {
     console.log(context);
   }, []);
 
+  const getTotalPrice=()=> {
+    return context.cart.reduce(
+      (accumulator, item)=> accumulator + item.quantity * item.price,0
+
+    )
+    
+  }
+
   return (
     <React.Fragment>
       <div className="bg-red-300">
@@ -48,6 +56,7 @@ const CartPage = (props) => {
               </div>
             </li>
           ))}
+          <p>total $: {getTotalPrice()}</p>
         </ul>
       </main>
     </React.Fragment>
