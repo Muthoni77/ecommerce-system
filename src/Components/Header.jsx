@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../assets/logo2.jpg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { FaUserAlt } from "react-icons/fa";
+import { BiUser } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Outlet, Link } from "react-router-dom";
 const Header = (props) => (
@@ -14,14 +14,14 @@ const Header = (props) => (
         </div>
         <div class="w-full max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100 rounded-md hidden xl:flex items-center">
           <select
-            class="bg-transparent uppercase font-bold text-sm p-4 mr-4"
+            className="bg-transparent uppercase font-semibold text-sm p-4 mr-4"
             name=""
             id=""
           >
             <option>all categories</option>
           </select>
           <input
-            class="border-l border-gray-300 bg-transparent font-semibold text-sm pl-4"
+            className="border-l border-gray-300 bg-transparent font-semibold text-sm pl-4"
             type="text"
             placeholder="I'm searching for ..."
           />
@@ -31,39 +31,40 @@ const Header = (props) => (
             </div>
           </button>
         </div>
-        <div class="ml-auto md:w-48 hidden sm:flex flex-col place-items-end">
-          <span class="font-bold md:text-xl">8 800 332 65-66</span>
+        <div class=" md:w-46 hidden sm:flex flex-col place-items-end">
+          <span class="font-semibold md:text-xl">+254 702 531 281</span>
           <span class="font-semibold text-sm text-gray-400">Support 24/7</span>
         </div>
 
         <nav>
-          <ul className="ml-4 xl:w-48 flex items-center  justify-end ">
-            <li className="ml-5 lg:ml-4 relative inline-block j">
-              <Link to="/sign">
+          <ul className="ml-4 xl:w-48 flex items-center  ">
+            <li className="ml-4  lg:ml-4 relative inline-block j flex">
+              <Link to="">
                 <div className="relative">
-                  <FaUserAlt className="text-[24px]" />
-                  <button className="">Accounts </button>
-                  
-                    <div id="myDropdown" class="dropdown-content">
-                      <a href="#home">Home</a>
-                      <a href="#about">About</a>
-                      <a href="#contact">Contact</a>
-                    </div>
-                  
+                  <BiUser className="text-[24px]" />
+                </div>
+                <div>
+                  <select className="bg-transparent uppercase font-semibold text-sm  mr-2">
+                    <option value="fruit">Sign in</option>
+
+                    <option value="vegetable">My Account</option>
+
+                    <option value="meat">My orders</option>
+                  </select>
                 </div>
               </Link>
             </li>
-            <li className="ml-5 lg:ml-4 relative inline-block">
+            <li className="ml-4 lg:ml-4 relative inline-block">
               <Link to="/cart">
                 <div className="relative">
-                  <AiOutlineShoppingCart className="text-[24px]" />(
+                  <AiOutlineShoppingCart className="text-[32px]" />(
                   {props.cartItemNumber})
                 </div>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/">Home</Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>
