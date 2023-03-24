@@ -13,29 +13,30 @@ import Code from './Registration-Form/Code';
 import GlobalState from './Context/GlobalState';
 import ProductsPage from './Pages/Product';
 import CartPage from './Pages/Cart';
+import { Orders } from './Pages/Orders';
 
 function App() {
 
   return (
     <div className="App h-full">
       <GlobalState>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/forgotpassword" element={<Forgotpassword />} />
-          <Route path="/resetpassword" element={<Resetpassword />} />
-          <Route path="/code" element={<Code />} />
-          
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/forgotpassword" element={<Forgotpassword />} />
+            <Route path="/resetpassword" element={<Resetpassword />} />
+            <Route path="/code" element={<Code />} />
+
             <Route path="/cart" element={<CartPage />} />
             <Route path="/" element={<ProductsPage />} />
-          
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/sidenav" element={<SideNav />} />
-        </Routes>
-      </BrowserRouter>
-</GlobalState>
-    
+
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/sidenav" element={<SideNav />} />
+            <Route path="/orders" element={<Orders />} />
+          </Routes>
+        </BrowserRouter>
+      </GlobalState>
     </div>
   );
 }

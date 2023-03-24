@@ -16,13 +16,13 @@ function  Signup() {
           <p className="mb-12">
             Already have an account? <a href="#!">Sign in</a>
           </p>
-          <form className=" flex flex-col">
+          <form className=" flex flex-col ">
             <div className=" flex flex-col">
               <label className=" text-left" for="userName">
                 Username
               </label>
               <input
-                className=" mb-4 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
+                className=" mb-4 h-10 w-96 rounded-xl border-[1px] border-gray-400 px-4"
                 id="userName"
                 type="text"
                 placeholder="userName"
@@ -37,7 +37,7 @@ function  Signup() {
               Phone No
             </label>
             <input
-              className=" mb-3 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
+              className=" mb-3 h-10 w-96 rounded-xl border-[1px] border-gray-400 px-4"
               id="phone no"
               type="number"
               placeholder="PhoneNo"
@@ -53,7 +53,7 @@ function  Signup() {
                 Email
               </label>
               <input
-                className=" mb-4 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
+                className=" mb-4 h-10 w-96 rounded-xl border-[1px] border-gray-400 px-4"
                 id="Email"
                 type="text"
                 placeholder="Email"
@@ -68,7 +68,7 @@ function  Signup() {
                 Password
               </label>
               <input
-                className=" mb-4 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
+                className=" mb-4 h-10 w-96 rounded-xl border-[1px] border-gray-400 px-4"
                 id="password"
                 type="text"
                 placeholder="Password"
@@ -82,7 +82,7 @@ function  Signup() {
               <input
                 type={"submit"}
                 value="Sign up"
-                className=" mb-5 h-14 w-96 bg-blue-300 rounded-xl"
+                className=" mb-5 h-10 w-36 bg-blue-300 rounded-xl ml-32"
               />
             </div>
           </form>

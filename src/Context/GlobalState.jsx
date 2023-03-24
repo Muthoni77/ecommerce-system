@@ -1,4 +1,4 @@
-import React, {  useReducer } from "react";
+import React, {  useReducer, useState } from "react";
 
 import ProductContext from "./Product-Context";
 import { productReducer, ADD_PRODUCT, REMOVE_PRODUCT } from "./Reducer";

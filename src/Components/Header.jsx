@@ -12,7 +12,7 @@ const Header = (props) => (
           <h1 className="text-blue-500 font-extrabold text-4xl ">ATELLER</h1>
           <img src={logo} alt="logo" className="h-10 md:h-12 " />
         </div>
-        <div class="w-full max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100 rounded-md hidden xl:flex items-center">
+        <div class="w-full max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100 rounded-md hidden xl:flex items-center ">
           <select
             className="bg-transparent uppercase font-semibold text-sm p-4 mr-4"
             name=""
