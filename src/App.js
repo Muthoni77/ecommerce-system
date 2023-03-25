@@ -22,7 +22,7 @@ function App() {
       <GlobalState>
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<Login />} />
+            <Route path="/Login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgotpassword" element={<Forgotpassword />} />
             <Route path="/resetpassword" element={<Resetpassword />} />
