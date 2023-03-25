@@ -1,11 +1,79 @@
-import React from 'react'
+import React from "react";
+// import { connect } from 'react-redux';
 
-function Product() {
+import ProductContext from "../Context/Product-Context";
+import Header from "../Components/Header";
+// import { addProductToCart } from '../store/actions';
+
+const ProductsPage = (props) => {
+  const DollarUsd = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "Ksh",
+  });
   return (
-    <div>
-        <h1>These are all our products for now</h1>
-    </div>
-  )
-}
+    <ProductContext.Consumer>
+      {(context) => (
+        <React.Fragment>
+          <div className="">
+            <Header
+              cartItemNumber={context.cart.reduce((count, curItem) => {
+                return count + curItem.quantity;
+              }, 0)}
+            />
+          </div>
+          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mx-20  ">
+            {/* <div className=" "> */}
+            {context.products.map((product) => (
+              <div
+                className="bg-gray-100 "
+                key={product.id}
+                href={product.href}
+              >
+                <img
+                  className="hover:grow hover:shadow-lg"
+                  src={product.imageSrc}
+                  alt="products"
+                />
+                <div className="ml-20 flex items-center justify-between">
+                  <p className="">
+                    {product?.name?.substr(0, 22).concat(product?.name?.length > 56? "":"...")}
+                    {/* {product?.name
+                      ?.subtr(0, 22)
+                      .concat(product?.name?.length > 22 ? "..." : " ")} */}
+                  </p>
+                </div>
+                <p className="pt-1 text-red-700 font-bold">
+                  {DollarUsd.format(product.price)}
+                </p>
+                <button
+                  onClick={context.addProductToCart.bind(this, product)}
+                  className="bg-gray-300 w-50  rounded-lg py-1 mt-auto mb-2 hover:bg-gray-500 hover:text-white"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            ))}
+          </div>
+          {/* </div> */}
+        </React.Fragment>
+      )}
+    </ProductContext.Consumer>
+  );
+};
 
-export default Product
+// const mapStateToProps = state => {
+//   return {
+//     products: state.products,
+//     cartItemCount: state.cart.reduce((count, curItem) => {
+//       return count + curItem.quantity;
+//     }, 0)
+//   };
+// };
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     addProductToCart: product => dispatch(addProductToCart(product))
+//   };
+// };
+
+export default ProductsPage;
