@@ -14,11 +14,13 @@ import GlobalState from './Context/GlobalState';
 import ProductsPage from './Pages/Product';
 import CartPage from './Pages/Cart';
 import { Orders } from './Pages/Orders';
+import Home from './Components/Home';
 
 function App() {
 
   return (
     <div className="App h-full">
+      
       <GlobalState>
         <BrowserRouter>
           <Routes>
@@ -27,7 +29,7 @@ function App() {
             <Route path="/forgotpassword" element={<Forgotpassword />} />
             <Route path="/resetpassword" element={<Resetpassword />} />
             <Route path="/code" element={<Code />} />
-
+            <Route path="/home" element={<Home />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/" element={<ProductsPage />} />
 
