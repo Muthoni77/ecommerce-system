@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import { connect } from 'react-redux';
 
 import ProductContext from "../Context/Product-Context";
@@ -6,6 +6,18 @@ import Header from "../Components/Header";
 // import { addProductToCart } from '../store/actions';
 
 const ProductsPage = (props) => {
+  // const [products,setProducts] = useState ([]);
+  // async function fetch_data(){
+  //   const resource = await fetch("http://localhost:5000/api ",);
+  //   const res =await resource.json();
+  //   console.log(res);
+  //   setProducts(res.data)
+  // }
+  // useEffect(()=>{
+  //   fetch_data();
+  // },[]);
+  // console.log(products);
+
   const DollarUsd = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "Ksh",
@@ -36,7 +48,9 @@ const ProductsPage = (props) => {
                 />
                 <div className="ml-20 flex items-center justify-between">
                   <p className="">
-                    {product?.name?.substr(0, 22).concat(product?.name?.length > 56? "":"...")}
+                    {product?.name
+                      ?.substr(0, 22)
+                      .concat(product?.name?.length > 56 ? "" : "...")}
                     {/* {product?.name
                       ?.subtr(0, 22)
                       .concat(product?.name?.length > 22 ? "..." : " ")} */}
