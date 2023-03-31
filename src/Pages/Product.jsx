@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 
 import ProductContext from "../Context/Product-Context";
 import Header from "../Components/Header";
+import Home from "../Components/Home";
+// import Home from "./Components/Home";
 // import { addProductToCart } from '../store/actions';
 
 const ProductsPage = (props) => {
@@ -27,13 +29,15 @@ const ProductsPage = (props) => {
       {(context) => (
         <React.Fragment>
           <div className="">
-            <Header
+            <Header/>
+            <Home
+            
               cartItemNumber={context.cart.reduce((count, curItem) => {
                 return count + curItem.quantity;
               }, 0)}
             />
           </div>
-          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mx-20  ">
+          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mx-20 mt-20 ">
             {/* <div className=" "> */}
             {context.products.map((product) => (
               <div
