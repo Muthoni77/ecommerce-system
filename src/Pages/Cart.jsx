@@ -23,21 +23,21 @@ const CartPage = (props) => {
 
   return (
     <React.Fragment>
-      <div className="bg-red-300">
+      <div className="">
         <Header
           cartItemNumber={context.cart.reduce((count, curItem) => {
             return count + curItem.quantity;
           }, 0)}
         />
       </div>
-      <main className="cart">
+      <main className="bg-gray-100 ">
         {context.cart.length <= 0 && <p>No Item in the Cart!</p>}
         <ul>
           {context.cart.map((cartItem) => (
             <li key={cartItem.id}>
-              <div>
+              <div className="bg-blue flex w-2/4 mx-auto mb-7  justify-between">
                 <img
-                  className="w-[100px] h-[100px]"
+                  className="w-[250px] h-[150px] mr-10"
                   src={cartItem.imageSrc}
                   alt={cartItem.name}
                 />
@@ -50,13 +50,14 @@ const CartPage = (props) => {
                     this,
                     cartItem.id
                   )}
+                  className=""
                 >
                   Remove from Cart
                 </button>
               </div>
             </li>
           ))}
-          <p>total $: {getTotalPrice()}</p>
+          <h1 className="mt-7 font-bold">TOTAL Ksh: {getTotalPrice()}</h1>
         </ul>
       </main>
     </React.Fragment>
