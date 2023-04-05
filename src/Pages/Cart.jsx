@@ -3,8 +3,8 @@ import React, { useContext, useEffect } from "react";
 
 import ProductContext from "../Context/Product-Context";
 import Header from "../Components/Header";
+import { Link } from "react-router-dom";
 // import { removeProductFromCart } from '../store/actions';
-
 
 const CartPage = (props) => {
   const context = useContext(ProductContext);
@@ -13,13 +13,12 @@ const CartPage = (props) => {
     console.log(context);
   }, []);
 
-  const getTotalPrice=()=> {
+  const getTotalPrice = () => {
     return context.cart.reduce(
-      (accumulator, item)=> accumulator + item.quantity * item.price,0
-
-    )
-    
-  }
+      (accumulator, item) => accumulator + item.quantity * item.price,
+      0
+    );
+  };
 
   return (
     <React.Fragment>
@@ -59,11 +58,12 @@ const CartPage = (props) => {
           ))}
           <h1 className="mt-7 font-bold">TOTAL Ksh: {getTotalPrice()}</h1>
         </ul>
+
+        <Link to="/orders">checkout</Link>
       </main>
     </React.Fragment>
   );
 };
-
 
 // const mapStateToProps = state => {
 //   return {
