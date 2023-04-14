@@ -2,7 +2,6 @@
 import './App.css';
 import Login from './Registration-Form/Login';
 
-import Signup from './Registration-Form/Signup';
 import { BrowserRouter ,Routes,Route } from 'react-router-dom';
 import Profile from './Registration-Form/Profile';
 import SideNav from './Pages/SideNav';
@@ -14,6 +13,7 @@ import GlobalState from './Context/GlobalState';
 import ProductsPage from './Pages/Product';
 import CartPage from './Pages/Cart';
 import { Orders } from './Pages/Orders';
+import Signup from './Registration-Form/Signup';
 
 function App() {
 

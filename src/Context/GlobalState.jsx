@@ -115,15 +115,21 @@ const GlobalState = (props) => {
   //   },
   // ];
   const [products, setProducts] = useState([]);
-  async function fetch_data() {
-    const resource = await fetch("http://localhost:5000/api ");
-    const res = await resource.json();
-    console.log(res);
-    setProducts(res.data);
-  }
-  useEffect(() => {
-    fetch_data();
-  }, []);
+  // async function fetch_data() {
+
+  //   try {
+  //     const resource = await fetch("http://localhost:5000/api ");
+  //     const res = await resource.json();
+  //     console.log(res);
+  //     setProducts(res.data);
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+
+  // }
+  // useEffect(() => {
+  //   fetch_data();
+  // }, []);
   console.log(products);
 
   const [cart, setCart] = useState([]);

@@ -60,7 +60,7 @@ function Login() {
           </div>
           <div className="mb-4">
             <p>
-              Not a member? <a href="#!">Sign up</a>
+              Not a member? <a href="/signup">Sign up</a>
             </p>
           </div>
         </form>
