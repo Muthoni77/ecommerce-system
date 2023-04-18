@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from "react";
 
 import ProductContext from "../Context/Product-Context";
 import Header from "../Components/Header";
+import { Link } from "react-router-dom";
 // import { removeProductFromCart } from '../store/actions';
 
 
@@ -58,6 +59,8 @@ const CartPage = (props) => {
           ))}
           <p>total $: {getTotalPrice()}</p>
         </ul>
+        <Link to="/orders">Checkout</Link>
+
       </main>
     </React.Fragment>
   );

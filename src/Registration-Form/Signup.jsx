@@ -17,7 +17,7 @@ const Signup = () => {
   //   [name]:value
   //   })
   //   }
-  const handleChange = (event) => {
+  const handleChange = (event) => { 
     setUser({ ...User, [event.target.name]: event.target.value });
   };
 
@@ -47,9 +47,10 @@ const Signup = () => {
               <input
                 className=" mb-4 h-10 w-96 rounded-xl border-[1px] border-gray-400 px-4"
                 id="Name"
+                name="name"
                 type="text"
                 placeholder="FullName"
-                defaultValue={User.name}
+                value={User.name}
                 onChange={handleChange}
               />
             </div>
@@ -61,6 +62,7 @@ const Signup = () => {
               className=" mb-3 h-10 w-96 rounded-xl border-[1px] border-gray-400 px-4"
               id="create-account-firstname"
               type="number"
+              name="phone"
               placeholder="PhoneNo"
                 value={User.phone}
                 onChange={handleChange}
@@ -75,6 +77,7 @@ const Signup = () => {
                 className=" mb-4 h-10 w-96 rounded-xl border-[1px] border-gray-400 px-4"
                 id="create-account-phone"
                 type="text"
+                name="email"
                 placeholder="Email"
                 defaultvalue={User.email}
                 onChange={handleChange}
@@ -89,6 +92,7 @@ const Signup = () => {
                 id="create-account-email"
                 type="text"
                 placeholder="Password"
+                name="password"
                 value={User.password}
                 onChange={handleChange}
               />
