@@ -67,7 +67,7 @@ const login =(event)=>{
             />
           </div>
           <div className="mb-4">
-            <a href="#!">Forgot your password?</a>
+            <a href="/forgotpassword">Forgot your password?</a>
           </div>
 
           <div className="flex flex-col">

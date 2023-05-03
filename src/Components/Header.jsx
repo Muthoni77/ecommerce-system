@@ -1,11 +1,20 @@
-import React from "react";
+import React, {  useRef, useState} from "react";
 import logo from "../assets/logo2.jpg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiUser } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Outlet, Link } from "react-router-dom";
-const Header = (props) => (
-  <>
+
+const Header = (props) => {
+  
+  const dropdownRef = useRef(null);
+ 
+  const [open,SetOpen] = useState(false)
+  // const onClick = () => setIsActive(!isActive);
+  const toggleMenu = ()=>SetOpen(!open)
+  
+  return(
+  <div>
     <header class="bg-white">
       <div class="container mr-2 px-4 py-8 flex items-center justify-between">
         <div class=" md:w-48 flex-shrink-0 flex">
@@ -42,18 +51,47 @@ const Header = (props) => (
           <nav>
             <ul className="ml-4 xl:w-48 flex items-center  ">
               <li className="ml-4  lg:ml-4 relative inline-block j flex">
+                {/* Dropdown menu */}
                 <Link to="">
-                  <div className="relative">
+                  <div className="flex"> 
+                  <button onClick={toggleMenu} className="bg-transparent uppercase font-semibold text-sm  mr-2">
+          <span>User</span>
+          <div className="relative">
                     <BiUser className="text-[24px]" />
                   </div>
-                  <div>
+        </button>
+        {console.log(open)}
+        <nav
+          ref={dropdownRef}
+          className={`menu ${open ? "active" : "inactive"}`}
+        >
+          {
+            open &&
+          <ul>
+            <li>
+            <Link to="/login">Sign In</Link>
+            </li>
+            <li>
+            <Link to="/checkout">My orders</Link>
+            </li>
+            <li>
+            <Link to="/profile">My account</Link>
+            </li>
+          </ul>
+          }
+        </nav>
+                  
+                  {/* <div>
                     <select className="bg-transparent uppercase font-semibold text-sm  mr-2">
-                      <option value="fruit">Sign in</option>
+                      <option value="sign up">
+                      <Link to="/login">Sign In</Link>
+                      </option>
 
-                      <option value="vegetable">My Account</option>
+                      <option value="vegetable">  <Link to="/checkout">My orders</Link></option>
 
-                      <option value="meat">My orders</option>
+                      <option value="meat">  <Link to="/profile">My account</Link></option>
                     </select>
+                  </div> */}
                   </div>
                 </Link>
               </li>
@@ -75,7 +113,8 @@ const Header = (props) => (
     </header>
 
     <Outlet />
-  </>
-);
+  </div>
+  )
+};
 
 export default Header;

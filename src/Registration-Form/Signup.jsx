@@ -37,7 +37,7 @@ const Signup = () => {
         <div className=" text-black">
           <h1 className=" mb-6 font-bold ">SignUp</h1>
           <p className="mb-12">
-            Already have an account? <a href="#!">Sign in</a>
+            Already have an account? <a href="/login">Sign in</a>
           </p>
           <form  className=" flex flex-col ">
             <div className=" flex flex-col">
