@@ -1,8 +1,29 @@
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate()
+  const [user,setUser] = useState({
+    email:"",
+    password: ""
+})
+const handleChange = e =>{
+const {name,value} = e.target
+setUser({
+...user,//spread operator 
+[name]:value
+})
+}
+const login =(event)=>{
+  event.preventDefault()
+  axios.post("http://localhost:7001/api/user/Login",user)
+  .then(res=>alert(res.data.message)).catch((err)=>
+    console.error(err)
+    //setLoginUser(res.data.user)
+  )}
+
+
   return (
     // <div
     //   className="h-screen w-full p-5 pt-8 bg-no-repeat bg-cover  "
@@ -16,7 +37,7 @@ function Login() {
         <h1 className=" font-bold  ">Login</h1>
         <p className="mb-12">Welcome to Ateller</p>
 
-        <form className=" flex flex-col">
+        <form className=" flex flex-col" onSubmit={login}>
           <div className=" flex flex-col">
             <label className=" text-left" for="email">
               Email
@@ -26,10 +47,9 @@ function Login() {
               id="Email"
               type="text"
               placeholder="Email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+              name="email"
+              value={user.email}
+              onChange={handleChange}
             />
           </div>
           <div className="flex flex-col ">
@@ -41,26 +61,24 @@ function Login() {
               id="password"
               type="text"
               placeholder="Password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
+              name="password"
+              value={user.password}
+              onChange={handleChange}
             />
           </div>
           <div className="mb-4">
-            <a href="#!">Forgot your password?</a>
+            <a href="/forgotpassword">Forgot your password?</a>
           </div>
 
           <div className="flex flex-col">
-            <input
-              type={"submit"}
-              value="Sign in "
+            <button
+              type="submit"
               className=" mb-5 h-14 w-96 bg-blue-300 rounded-xl"
-            />
+            >Sign In</button>
           </div>
           <div className="mb-4">
             <p>
-              Not a member? <a href="#!">Sign up</a>
+              Not a member? <a href="/signup">Sign up</a>
             </p>
           </div>
         </form>

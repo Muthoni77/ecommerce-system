@@ -1,11 +1,37 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import logo from "../assets/logo2.jpg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiUser } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Outlet, Link } from "react-router-dom";
-const Header = (props) => (
-  <>
+import axios from "axios"
+
+const Header = ({onChangeCategory,cartItemNumber}) => {
+  const [categories,setCategories]= useState([])
+
+
+  
+  const fetchCategories=async()=>{
+      const response=await axios.get("http://localhost:7001/api/category/");
+      console.log("all categories from response");
+      console.log(response.data.data);
+      setCategories(response.data.data);
+  }
+  
+
+useEffect(()=>{
+  fetchCategories();
+  
+},[])
+ 
+  const [open,SetOpen] = useState(false)
+  // const onClick = () => setIsActive(!isActive);
+  const toggleMenu = ()=>SetOpen(!open)
+  
+
+  
+  return(
+  <div>
     <header class="bg-white">
       <div class="container mr-2 px-4 py-8 flex items-center justify-between">
         <div class=" md:w-48 flex-shrink-0 flex">
@@ -17,9 +43,19 @@ const Header = (props) => (
             className="bg-transparent uppercase font-semibold text-sm p-4 mr-4"
             name=""
             id=""
+            onChange={(e)=>{          
+              onChangeCategory(e.target.value)
+            }}
+          
           >
-            <option>all categories</option>
+
+           
+             <option value={"all"}>All</option>
+        {categories?.map((category)=><option value={category._id}>{category.name}</option>)}
+            
           </select>
+          
+      
           <input
             className="border-l border-gray-300 bg-transparent font-semibold text-sm pl-4"
             type="text"
@@ -42,18 +78,49 @@ const Header = (props) => (
           <nav>
             <ul className="ml-4 xl:w-48 flex items-center  ">
               <li className="ml-4  lg:ml-4 relative inline-block j flex">
+                {/* Dropdown menu */}
                 <Link to="">
+                  <div className="">
                   <div className="relative">
-                    <BiUser className="text-[24px]" />
-                  </div>
-                  <div>
+                    <BiUser className="text-[26px]" />
+                  </div> 
+                  <button onClick={toggleMenu} className="bg-transparent uppercase font-semibold text-sm  mr-2">
+          <span>User</span>
+        </button>
+        {console.log(open)}
+        <nav
+          
+          className={`menu ${open ? "active" : "inactive"}`}
+        >
+          {
+            open &&
+            <div className="w-27 h-27 bg-gray-100">
+          <ul>
+            <li>
+            <Link to="/login">Sign In</Link>
+            </li>
+            <li>
+            <Link to="/checkout">My orders</Link>
+            </li>
+            <li>
+            <Link to="/profile">My account</Link>
+            </li>
+          </ul>
+          </div>
+          }
+        </nav>
+                  
+                  {/* <div>
                     <select className="bg-transparent uppercase font-semibold text-sm  mr-2">
-                      <option value="fruit">Sign in</option>
+                      <option value="sign up">
+                      <Link to="/login">Sign In</Link>
+                      </option>
 
-                      <option value="vegetable">My Account</option>
+                      <option value="vegetable">  <Link to="/checkout">My orders</Link></option>
 
-                      <option value="meat">My orders</option>
+                      <option value="meat">  <Link to="/profile">My account</Link></option>
                     </select>
+                  </div> */}
                   </div>
                 </Link>
               </li>
@@ -61,7 +128,7 @@ const Header = (props) => (
                 <Link to="/cart">
                   <div className="relative">
                     <AiOutlineShoppingCart className="text-[32px]" />(
-                    {props.cartItemNumber})
+                    {cartItemNumber})
                   </div>
                 </Link>
               </li>
@@ -75,7 +142,8 @@ const Header = (props) => (
     </header>
 
     <Outlet />
-  </>
-);
+  </div>
+  )
+};
 
 export default Header;

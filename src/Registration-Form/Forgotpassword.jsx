@@ -22,15 +22,16 @@ function Forgotpassword() {
             />
           </div>
           <div className="flex flex-col">
-            <input
+            {/* <input
               type={"submit"}
               value="Request password reset"
               className=" mb-4 h-14 w-96 bg-blue-300 rounded-xl"
-            />
+            /> */}
+            <button className=" mb-4 h-14 w-96 bg-blue-300 rounded-xl" ><a href="/resetPassword">Submit</a></button>
           </div>
           <div className="mb-4">
             
-               <a href="#!">I remembered my password</a>
+               <a href="/login">I remembered my password</a>
           
           </div>
         </form>
