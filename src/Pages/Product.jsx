@@ -43,7 +43,7 @@ const ProductsPage = (props) => {
               >
                 <img
                   className="hover:grow hover:shadow-lg"
-                  src={product.imageSrc}
+                  src={product.image}
                   alt="products"
                 />
                 <div className="ml-20 flex items-center justify-between">

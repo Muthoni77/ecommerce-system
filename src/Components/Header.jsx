@@ -1,4 +1,4 @@
-import React, {  useRef, useState} from "react";
+import React, {useState} from "react";
 import logo from "../assets/logo2.jpg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiUser } from "react-icons/bi";
@@ -6,12 +6,14 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { Outlet, Link } from "react-router-dom";
 
 const Header = (props) => {
+  const [category,setCategory]= useState(false)
   
-  const dropdownRef = useRef(null);
  
   const [open,SetOpen] = useState(false)
   // const onClick = () => setIsActive(!isActive);
   const toggleMenu = ()=>SetOpen(!open)
+  
+
   
   return(
   <div>
@@ -26,9 +28,15 @@ const Header = (props) => {
             className="bg-transparent uppercase font-semibold text-sm p-4 mr-4"
             name=""
             id=""
+          
           >
-            <option>all categories</option>
+             
+              
+            <option>categories</option>
+            
           </select>
+          
+      
           <input
             className="border-l border-gray-300 bg-transparent font-semibold text-sm pl-4"
             type="text"
@@ -53,20 +61,21 @@ const Header = (props) => {
               <li className="ml-4  lg:ml-4 relative inline-block j flex">
                 {/* Dropdown menu */}
                 <Link to="">
-                  <div className="flex"> 
+                  <div className="">
+                  <div className="relative">
+                    <BiUser className="text-[26px]" />
+                  </div> 
                   <button onClick={toggleMenu} className="bg-transparent uppercase font-semibold text-sm  mr-2">
           <span>User</span>
-          <div className="relative">
-                    <BiUser className="text-[24px]" />
-                  </div>
         </button>
         {console.log(open)}
         <nav
-          ref={dropdownRef}
+          
           className={`menu ${open ? "active" : "inactive"}`}
         >
           {
             open &&
+            <div className="w-27 h-27 bg-gray-100">
           <ul>
             <li>
             <Link to="/login">Sign In</Link>
@@ -78,6 +87,7 @@ const Header = (props) => {
             <Link to="/profile">My account</Link>
             </li>
           </ul>
+          </div>
           }
         </nav>
                   

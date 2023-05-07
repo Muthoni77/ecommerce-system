@@ -39,7 +39,7 @@ const CartPage = (props) => {
               <div>
                 <img
                   className="w-[100px] h-[100px]"
-                  src={cartItem.imageSrc}
+                  src={cartItem.image}
                   alt={cartItem.name}
                 />
                 <strong>{cartItem.name}</strong> - ${cartItem.price} (
