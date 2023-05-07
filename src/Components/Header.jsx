@@ -1,13 +1,28 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import logo from "../assets/logo2.jpg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiUser } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Outlet, Link } from "react-router-dom";
+import axios from "axios"
 
-const Header = (props) => {
-  const [category,setCategory]= useState(false)
+const Header = ({onChangeCategory,cartItemNumber}) => {
+  const [categories,setCategories]= useState([])
+
+
   
+  const fetchCategories=async()=>{
+      const response=await axios.get("http://localhost:7001/api/category/");
+      console.log("all categories from response");
+      console.log(response.data.data);
+      setCategories(response.data.data);
+  }
+  
+
+useEffect(()=>{
+  fetchCategories();
+  
+},[])
  
   const [open,SetOpen] = useState(false)
   // const onClick = () => setIsActive(!isActive);
@@ -28,11 +43,15 @@ const Header = (props) => {
             className="bg-transparent uppercase font-semibold text-sm p-4 mr-4"
             name=""
             id=""
+            onChange={(e)=>{          
+              onChangeCategory(e.target.value)
+            }}
           
           >
-             
-              
-            <option>categories</option>
+
+           
+             <option value={"all"}>All</option>
+        {categories?.map((category)=><option value={category._id}>{category.name}</option>)}
             
           </select>
           
@@ -109,7 +128,7 @@ const Header = (props) => {
                 <Link to="/cart">
                   <div className="relative">
                     <AiOutlineShoppingCart className="text-[32px]" />(
-                    {props.cartItemNumber})
+                    {cartItemNumber})
                   </div>
                 </Link>
               </li>
