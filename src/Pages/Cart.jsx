@@ -36,13 +36,8 @@ const CartPage = (props) => {
             <li key={cartItem.id}>
               <div className="bg-blue flex w-2/4 mx-auto mb-7  justify-between">
                 <img
-<<<<<<< HEAD
-                  className="w-[250px] h-[150px] mr-10"
-                  src={cartItem.imageSrc}
-=======
                   className="w-[100px] h-[100px]"
                   src={cartItem.image}
->>>>>>> a217d3b556f1096209fcbc29733ea8c91c0caadf
                   alt={cartItem.name}
                 />
                 <strong>{cartItem.name}</strong> - ${cartItem.price} (
@@ -63,13 +58,8 @@ const CartPage = (props) => {
           ))}
           <h1 className="mt-7 font-bold">TOTAL Ksh: {getTotalPrice()}</h1>
         </ul>
-<<<<<<< HEAD
-
-        <Link to="/orders">checkout</Link>
-=======
         <Link to="/orders">Checkout</Link>
 
->>>>>>> a217d3b556f1096209fcbc29733ea8c91c0caadf
       </main>
     </React.Fragment>
   );

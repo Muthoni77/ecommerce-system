@@ -13,11 +13,8 @@ import GlobalState from './Context/GlobalState';
 import ProductsPage from './Pages/Product';
 import CartPage from './Pages/Cart';
 import { Orders } from './Pages/Orders';
-<<<<<<< HEAD
-// import Home from './Components/Home';
-=======
 import Signup from './Registration-Form/Signup';
->>>>>>> a217d3b556f1096209fcbc29733ea8c91c0caadf
+
 
 function App() {
 
