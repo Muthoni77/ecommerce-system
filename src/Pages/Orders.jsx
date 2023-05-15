@@ -1,96 +1,118 @@
 import React, { useContext } from "react";
 import ProductContext from "../Context/Product-Context";
+import axios from "axios";
+import Header from "../Components/Header";
+import { Link } from "react-router-dom";
 
 export const Orders = () => {
 
   const {cart} = useContext(ProductContext)
-
   console.log("cart", cart)
   
   return (
-    <div className="flex">
+    <div className="">
+      <Header/>
+      <div classname>
+         <Link to="/">Home</Link>
+         <Link to="/cart">Shopping Cart</Link>
+          <Link to="/orders">Checkout</Link>
+      </div>
+      <div className="flex"> 
       <div className="flex flex-col w-3/4 mx-20">
-        <h1 className=" mt-10  font-bold ">Personal details</h1>
-        <form className=" flex flex-row mt-7  justify-between items-center">
+        <h1 className=" mt-10  font-bold ">Personal information</h1>
+        <hr class="h-px my-4 bg-gray-300 border-0 dark:bg-gray-700"></hr>
+        <form className=" flex flex-row mt-0  justify-between items-center">
           <div className=" flex flex-col">
-            <label className=" text-left" for="shippingAddress">
-              Shipping Address
+            <label className=" text-left" for="fname">
+            Firstname
             </label>
             <input
               className=" mb-3 h-10 w-64 border-[1px] border-gray-400 px-4"
-              id="homeAddress"
+              id="firstname"
               type="text"
-              placeholder="Rainbow resort"
+              placeholder="Firstname"
             />
+              <label className=" text-left" for="fname">
+            Address
+            </label>
             <input
               className=" mb-3 h-10 w-64  border-[1px] border-gray-400 px-4"
-              id="officeAddress"
+              id="address"
               type="text"
-              placeholder="Raphta Road"
+              placeholder="Address"
             />
+              <label className=" text-left" for="fname">
+            Country
+            </label>
             <input
               className=" mb-3 h-10 w-64 border-[1px] border-gray-400 px-4"
-              id="primaryAddress"
+              id="country"
               type="text"
-              placeholder="Uthiru77"
+              placeholder="Country"
             />
+              <label className=" text-left" for="fname">
+            State/ County
+            </label>
             <input
               className=" mb-3 h-10 w-64  border-[1px] border-gray-400 px-4"
-              id="primaryAddress"
+              id="state"
               type="text"
-              placeholder="Uthiru77"
+              placeholder="State / County"
             />
           </div>
           <div className=" flex flex-col">
             <label className=" text-left" for="shippingAddress">
-              Shipping Address
+              Second Name
             </label>
             <input
               className=" mb-3 h-10 w-64  border-[1px] border-gray-400 px-4"
-              id="homeAddress"
+              id="secondName"
               type="text"
-              placeholder="Rainbow resort"
+              placeholder="Second name"
             />
+              <label className=" text-left" for="fname">
+            Contact
+            </label>
             <input
               className=" mb-3 h-10 w-64 border-[1px] border-gray-400 px-4"
-              id="officeAddress"
+              id="contact"
               type="text"
-              placeholder="Raphta Road"
+              placeholder="Contact"
             />
+              <label className=" text-left" for="fname">
+            City / Town
+            </label>
             <input
               className=" mb-3 h-10 w-64 border-[1px] border-gray-400 px-4"
-              id="primaryAddress"
+              id="town"
               type="text"
-              placeholder="Uthiru77"
+              placeholder="City/ Town"
             />
+              <label className=" text-left" for="fname">
+            Zip Code
+            </label>
             <input
               className=" mb-3 h-10 w-64 border-[1px] border-gray-400 px-4"
-              id="primaryAddress"
+              id="zipCode"
               type="text"
-              placeholder="Uthiru77"
+              placeholder="Zip Code"
             />
           </div>
         </form>
-
-        <input
-          type={"submit"}
-          value="Submit"
-          className=" mb-2 h-10 w-36 bg-blue-300 ml-56"
-        />
 
         <div className=" flex flex-col ">
           <label className=" text-left" for="Note">
             Note
           </label>
           <input
-            className=" mb-3 h-36 w-3/4 m-7 border-[1px] border-gray-400 px-4"
+            className=" mb-3 h-36 w-98 m-7 border-[1px] border-gray-400 px-4"
             id="Email"
             type="text"
             value="mohamednasra@gmail.com"
           />
         </div>
       </div>
-      <div className="mx-20 mt-7">
+      <div className="mx-20 mt-20">
          <table className="border w-96">
         <tr>
           <th>Order Summary</th>
@@ -169,7 +191,9 @@ export const Orders = () => {
         </tr>
         <tr>
           <td>
-            <button>Checkout</button>
+            <button onClick={
+             () => alert('clicked!')
+            }>Checkout</button>
           </td></tr>
           <tr>
           <td>
@@ -188,6 +212,7 @@ export const Orders = () => {
         )}</ul> */}
         
       </div>
+    </div>
     </div>
   );
 };

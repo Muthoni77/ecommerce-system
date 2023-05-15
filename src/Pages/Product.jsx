@@ -14,7 +14,7 @@ const ProductsPage = (props) => {
   const [filteredProducts,setFilteredProducts]=useState([])
   const [category,setCategory]=useState("all")
 
-  const [initialRender,setInitialRender]=useState(false)
+  // const [initialRender,setInitialRender]=useState(false)
 
   // const [products,setProducts] = useState ([]);
   // async function fetch_data(){

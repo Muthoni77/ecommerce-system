@@ -9,9 +9,10 @@ import { Link } from "react-router-dom";
 const CartPage = (props) => {
   const context = useContext(ProductContext);
 
-  useEffect(() => {
-    console.log(context);
-  }, []);
+  // useEffect(() => {
+  // }, []);
+  
+  console.log(context);
 
   const getTotalPrice = () => {
     return context.cart.reduce(
