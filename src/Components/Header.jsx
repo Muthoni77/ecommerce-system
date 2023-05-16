@@ -35,6 +35,7 @@ useEffect(()=>{
     <header class="bg-white">
       <div class="container mr-2 px-4 py-8 flex items-center justify-between">
         <div class=" md:w-48 flex-shrink-0 flex">
+          {/* <button onClick={()}className="text-blue-500 font-extrabold text-4xl"> ATELLER</button> */}
           <h1 className="text-blue-500 font-extrabold text-4xl ">ATELLER</h1>
           <img src={logo} alt="logo" className="h-10 md:h-12 " />
         </div>

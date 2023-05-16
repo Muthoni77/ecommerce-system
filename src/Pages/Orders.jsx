@@ -12,11 +12,14 @@ export const Orders = () => {
   return (
     <div className="">
       <Header/>
-      <div classname>
-         <Link to="/">Home</Link>
-         <Link to="/cart">Shopping Cart</Link>
-          <Link to="/orders">Checkout</Link>
+      <div className = "flex gap-x-4 mx-20">
+         <Link to="/">Home __ </Link>
+         <Link to="/cart">Shopping Cart __</Link>
+          <Link to="/orders">Checkout </Link>
       </div>
+      <h1 className="text-black-100 font-normal text-4xl ">Checkout</h1>
+      <h1>Shopping Cart</h1>
+      <hr class="h-px my-4 bg-gray-300 border-0 dark:bg-gray-700"></hr>
       <div className="flex"> 
       <div className="flex flex-col w-3/4 mx-20">
         <h1 className=" mt-10  font-bold ">Personal information</h1>

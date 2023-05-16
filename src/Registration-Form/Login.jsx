@@ -18,7 +18,7 @@ setUser({
 const login =(event)=>{
   event.preventDefault()
   axios.post("http://localhost:7001/api/user/Login",user)
-  .then(res=>alert(res.data.message)).catch((err)=>
+  .then(res=>{alert(res.data.message); localStorage.setItem("token", res.data.data);}).catch((err)=>
     console.error(err)
     //setLoginUser(res.data.user)
   )}

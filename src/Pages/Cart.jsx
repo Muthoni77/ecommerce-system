@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 // import { connect } from 'react-redux';
-
+import axios from "axios";
 import ProductContext from "../Context/Product-Context";
 import Header from "../Components/Header";
 import { Link } from "react-router-dom";
@@ -10,9 +10,22 @@ const CartPage = (props) => {
   const context = useContext(ProductContext);
 
   // useEffect(() => {
-  // }, []);
+  // }, []);g
   
   console.log(context);
+  
+  const addCart=async()=>{
+  try {
+      const response=await axios.post("http://localhost:7001/api/cartitem/",context.cart);
+      console.log("Cartitem added successfully");
+      console.log(response.data.data);
+      
+  }
+  catch (error) {
+    console.log(error)
+  } 
+    
+  }
 
   const getTotalPrice = () => {
     return context.cart.reduce(
@@ -59,12 +72,13 @@ const CartPage = (props) => {
           ))}
           <h1 className="mt-7 font-bold">TOTAL Ksh: {getTotalPrice()}</h1>
         </ul>
-        <Link to="/orders">Checkout</Link>
+           
+        <button onClick={addCart}>Checkout </button>
 
       </main>
     </React.Fragment>
   );
-};
+};                                                                 
 
 // const mapStateToProps = state => {
 //   return {
