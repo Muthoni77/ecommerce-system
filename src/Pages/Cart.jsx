@@ -73,7 +73,7 @@ const CartPage = (props) => {
           <h1 className="mt-7 font-bold">TOTAL Ksh: {getTotalPrice()}</h1>
         </ul>
            
-        <button onClick={addCart}>Checkout </button>
+        <button onClick={addCart} >Checkout </button>
 
       </main>
     </React.Fragment>

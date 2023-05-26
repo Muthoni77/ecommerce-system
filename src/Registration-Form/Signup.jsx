@@ -4,10 +4,11 @@ import axios from "axios";
 
 const Signup = () => {
   const [User , setUser] = useState({
-    name:"",
+    username:"",
     phone:"",
     email:"",
-    password:""
+    password:"",
+    password2:""
   })
 
   // const handleChange = e =>{
@@ -21,17 +22,35 @@ const Signup = () => {
     setUser({ ...User, [event.target.name]: event.target.value });
   };
 
-    const register = ()=>{
-      const {name, phone ,email,password} = User
-      if (name && phone && email && password){
-       axios.post("http://localhost:7001/Register",User )
-       .then(res=>console.log(res))
+
+  // const handleChange = (event) => {
+  //   //     alert("hello");
+  //   // console.log("value set is ");
+  //   // console.log({ valueOne: event.target.name });
+  //   // console.log({ valueTwo: event.target.value });
+  //   setUser({ ...User, [event.target.name]: event.target.value });
+  // };
+ 
+
+    const register = (event)=>{
+      // const register = (event) => {
+    event.preventDefault();
+      const {username, phone ,email,password} = User
+      if (username && phone && email && password){
+      axios.post(" http://localhost:7001/api/user/register",User )
+      
+      //  .then(res=>console.log(res))
+          // .then(res=>{alert(res.data.message)})
+          .then(res=>alert(res.data.message)).catch((err)=>
+    console.error(err))
+      //  console.log("User");
+      //   console.log(User);
       }
       else{
           alert("invalid input")
       };
     }
-  
+
     return (
       <div className=" flex justify-center items-center mt-20 ">
         <div className=" text-black">
@@ -42,15 +61,15 @@ const Signup = () => {
           <form  className=" flex flex-col ">
             <div className=" flex flex-col">
               <label className=" text-left" for="name">
-                FullName
+                Username
               </label>
               <input
                 className=" mb-4 h-10 w-96 rounded-xl border-[1px] border-gray-400 px-4"
                 id="Name"
-                name="name"
+                name="username"
                 type="text"
-                placeholder="FullName"
-                value={User.name}
+                placeholder="username"
+                value={User.username}
                 onChange={handleChange}
               />
             </div>
@@ -79,7 +98,7 @@ const Signup = () => {
                 type="text"
                 name="email"
                 placeholder="Email"
-                defaultvalue={User.email}
+                value={User.email}
                 onChange={handleChange}
               />
             </div>
@@ -94,6 +113,20 @@ const Signup = () => {
                 placeholder="Password"
                 name="password"
                 value={User.password}
+                onChange={handleChange}
+              />
+            </div>
+             <div className=" flex flex-col">
+              <label className=" text-left" for="name">
+                Confirm Password
+              </label>
+              <input
+                className=" mb-4 h-10 w-96 rounded-xl border-[1px] border-gray-400 px-4"
+                id="Password"
+                name="password2"
+                type="text"
+                placeholder="confirm password"
+                value={User.password2}
                 onChange={handleChange}
               />
             </div>
