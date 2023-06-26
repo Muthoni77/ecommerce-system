@@ -6,6 +6,7 @@ import { productReducer, ADD_PRODUCT, REMOVE_PRODUCT } from "./Reducer";
 const GlobalState = (props) => {
  
   const [products, setProducts] = useState([]);
+
   async function fetch_data() {
 
     try {
@@ -13,6 +14,7 @@ const GlobalState = (props) => {
       const res = await resource.json();
       console.log(res);
       setProducts(res.data);
+  
     } catch (error) {
       console.log(error)
     }
@@ -47,6 +49,7 @@ const GlobalState = (props) => {
         cart: cartState.cart,
         addProductToCart: addProductToCart,
         removeProductFromCart: removeProductFromCart,
+
       }}
     >
       {props.children}

@@ -3,6 +3,8 @@ import React, { useEffect, useState,useContext } from "react";
 
 import ProductContext from "../Context/Product-Context";
 import Header from "../Components/Header";
+import Home from "../Components/Home";
+// import Home from "./Components/Home";
 // import { addProductToCart } from '../store/actions';
 
 const ProductsPage = (props) => {
@@ -11,6 +13,8 @@ const ProductsPage = (props) => {
   const [allProducts,setAllProducts]=useState(products);
   const [filteredProducts,setFilteredProducts]=useState([])
   const [category,setCategory]=useState("all")
+
+  // const [initialRender,setInitialRender]=useState(false)
 
   // const [products,setProducts] = useState ([]);
   // async function fetch_data(){
@@ -36,18 +40,20 @@ const ProductsPage = (props) => {
   }
 
  
-  // useEffect(()=>{
-  //   setFilteredProducts(products);
-  //   console.log("products all products");
-  //   console.log(products);
-  //   console.log(allProducts);
-  // },[])
+  useEffect(()=>{
+    setFilteredProducts(products);
+  },[products])
 
   useEffect(()=>{
+    if(category!=="all"){
       const ourFilteredProducts=products.filter((product)=>product.category===category);
       setFilteredProducts(ourFilteredProducts);
       console.log("ourFilteredProducts");
       console.log(ourFilteredProducts);
+    }else{
+      setFilteredProducts(products);
+    }
+     
   },[category])
 
   
@@ -65,9 +71,9 @@ const ProductsPage = (props) => {
                 return count + curItem.quantity;
               }, 0)}
             />
-            <p>Selected category: {category}</p>
+
           </div>
-          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mx-20  ">
+          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mx-20 mt-20 ">
             {/* <div className=" "> */}
             {filteredProducts.map((product) => (
               <div
