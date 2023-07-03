@@ -10,7 +10,7 @@ import Home from "../Components/Home";
 const ProductsPage = (props) => {
 
   const {products}=useContext(ProductContext);
-  const [allProducts,setAllProducts]=useState(products);
+  // const [allProducts,setAllProducts]=useState(products);
   const [filteredProducts,setFilteredProducts]=useState([])
   const [category,setCategory]=useState("all")
 

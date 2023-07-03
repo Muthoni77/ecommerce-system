@@ -10,7 +10,7 @@ const GlobalState = (props) => {
   async function fetch_data() {
 
     try {
-      const resource = await fetch("http://localhost:7001/api/products/ ");
+      const resource = await fetch("http://localhost:20090/api/products/ ");
       const res = await resource.json();
       console.log(res);
       setProducts(res.data);

@@ -33,14 +33,14 @@ const Signup = () => {
  
 
     const register = (event)=>{
-      // const register = (event) => {
     event.preventDefault();
       const {username, phone ,email,password} = User
       if (username && phone && email && password){
-      axios.post(" http://localhost:7001/api/user/register",User )
+      axios.post(" http://localhost:20090/api/user/register",User )
+      
       
       //  .then(res=>console.log(res))
-          // .then(res=>{alert(res.data.message)})
+           .then(res=>{alert(res.data.message)})
           .then(res=>alert(res.data.message)).catch((err)=>
     console.error(err))
       //  console.log("User");
