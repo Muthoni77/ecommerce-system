@@ -94,7 +94,7 @@ const login = async (event)=>{
             />
             {showPassword ? (
                 <BiHide
-                  className="absolute  top-[50%] cursor-pointer hover:scale-105 text-dark"
+                  className="absolute top-[50%] cursor-pointer hover:scale-105 text-dark"
                   size={18}
                   onClick={() => {
                     setShowPassword(false);
@@ -102,7 +102,7 @@ const login = async (event)=>{
                 />
               ) : (
                  <BiShow
-                   className="absolute text-left top-[50%] cursor-pointer hover:scale-105 text-dark"
+                   className="absolute text-left  top-[50%] cursor-pointer hover:scale-105 text-dark"
                    size={18}
                    onClick={() => {
                      setShowPassword(true);
@@ -129,6 +129,7 @@ const login = async (event)=>{
               disabled={true}
               className={!loading ? "hidden" : "mb-5 h-14 w-96 bg-gray-500 text-white font-bold hover:cursor-not-allowed rounded-xl"}
             >
+
               <FontAwesomeIcon className="mr-2" icon={faSpinner} />
               Loading ...</button>
           </div>
