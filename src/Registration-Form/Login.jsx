@@ -1,14 +1,15 @@
 
 import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { BiHide, BiShow } from "react-icons/bi";
 import {validateEmail} from '../services/validator'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faUser, faSpinner} from '@fortawesome/free-solid-svg-icons'
 
+import {toast} from 'react-toastify'
+
+import api from '../services/api'
+
 function Login() {
-  const navigate = useNavigate()
   const [user,setUser] = useState({
     email:"",
     password: ""
@@ -35,20 +36,32 @@ const {name,value} = e.target
  const [loading, setLoading] = useState(false);
 
 
-const login = async (event)=>{  
-      setLoading(true);
-      event.preventDefault()
-      axios.post("http://localhost:20090/api/user/Login",user)
-      .then(res=>{
-        alert(res.data.message); 
-        localStorage.setItem("ateller-token", res.data.data);
-        setLoading(false)
-      }).catch((err)=>
-        console.error(err)
-        //setLoginUser(res.data.user)
-      );
+
+const loginUser = async (email, password) => {
+  const loginResponse = await api.loginUser(email, password)
+
+  if (loginResponse.status >= 200 && loginResponse.status < 300) {
+    return loginResponse.data;
+  }else {
+    return null;
+  }
 }
-  
+
+const formSubmitted = async (event) => {
+  setLoading(true)
+  event.preventDefault()
+  const login = await loginUser(user.email, user.password);
+  console.log(login);
+
+  if (login) {
+        toast.success(login.message); 
+        localStorage.setItem("ateller-token", login.data);
+        setLoading(false)
+  }else {
+    setLoading(false)
+  }
+}
+
  
 
   return (
@@ -64,7 +77,7 @@ const login = async (event)=>{
         <h1 className=" font-bold  ">Login</h1>
         <p className="mb-12">Welcome to Ateller</p>
 
-        <form className=" flex flex-col" onSubmit={login}>
+        <form className=" flex flex-col" onSubmit={formSubmitted}>
           <div className=" flex flex-col">
             <label className=" text-left" for="email">
               Email

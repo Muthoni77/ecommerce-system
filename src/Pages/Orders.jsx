@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import ProductContext from "../Context/Product-Context";
-import axios from "axios";
 import Header from "../Components/Header";
 import { Link } from "react-router-dom";
 
@@ -26,7 +25,7 @@ export const Orders = () => {
         <hr class="h-px my-4 bg-gray-300 border-0 dark:bg-gray-700"></hr>
         <form className=" flex flex-row mt-0  justify-between items-center">
           <div className=" flex flex-col">
-            <label className=" text-left" for="fname">
+            <label className=" text-left" htmlFor="fname">
             Firstname
             </label>
             <input
@@ -35,7 +34,7 @@ export const Orders = () => {
               type="text"
               placeholder="Firstname"
             />
-              <label className=" text-left" for="fname">
+              <label className=" text-left" htmlFor="fname">
             Address
             </label>
             <input
@@ -44,7 +43,7 @@ export const Orders = () => {
               type="text"
               placeholder="Address"
             />
-              <label className=" text-left" for="fname">
+              <label className=" text-left" htmlFor="fname">
             Country
             </label>
             <input
@@ -53,7 +52,7 @@ export const Orders = () => {
               type="text"
               placeholder="Country"
             />
-              <label className=" text-left" for="fname">
+              <label className=" text-left" htmlFor="fname">
             State/ County
             </label>
             <input
@@ -64,7 +63,7 @@ export const Orders = () => {
             />
           </div>
           <div className=" flex flex-col">
-            <label className=" text-left" for="shippingAddress">
+            <label className=" text-left" htmlFor="shippingAddress">
               Second Name
             </label>
             <input
@@ -73,7 +72,7 @@ export const Orders = () => {
               type="text"
               placeholder="Second name"
             />
-              <label className=" text-left" for="fname">
+              <label className=" text-left" htmlFor="fname">
             Contact
             </label>
             <input
@@ -82,7 +81,7 @@ export const Orders = () => {
               type="text"
               placeholder="Contact"
             />
-              <label className=" text-left" for="fname">
+              <label className=" text-left" htmlFor="fname">
             City / Town
             </label>
             <input
@@ -91,7 +90,7 @@ export const Orders = () => {
               type="text"
               placeholder="City/ Town"
             />
-              <label className=" text-left" for="fname">
+              <label className=" text-left" htmlFor="fname">
             Zip Code
             </label>
             <input
@@ -104,7 +103,7 @@ export const Orders = () => {
         </form>
 
         <div className=" flex flex-col ">
-          <label className=" text-left" for="Note">
+          <label className=" text-left" htmlFor="Note">
             Note
           </label>
           <input

@@ -25,7 +25,6 @@ const GlobalState = (props) => {
   }, []);
   console.log(products);
 
-  const [cart, setCart] = useState([]);
   const [cartState, dispatch] = useReducer(productReducer, { cart: [] });
 
   const addProductToCart = (product) => {

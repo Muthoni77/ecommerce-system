@@ -3,7 +3,6 @@ import React, { useEffect, useState,useContext } from "react";
 
 import ProductContext from "../Context/Product-Context";
 import Header from "../Components/Header";
-import Home from "../Components/Home";
 // import Home from "./Components/Home";
 // import { addProductToCart } from '../store/actions';
 
@@ -54,7 +53,7 @@ const ProductsPage = (props) => {
       setFilteredProducts(products);
     }
      
-  },[category])
+  },[category, products])
 
   
 

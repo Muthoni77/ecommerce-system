@@ -1,8 +1,9 @@
 import { useState } from "react"
-import axios from "axios";
 import {validateEmail} from '../services/validator'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faUser, faSpinner} from '@fortawesome/free-solid-svg-icons'
+
+import api from '../services/api'
 
 const Signup = () => {
   const [User , setUser] = useState({
@@ -24,21 +25,46 @@ const Signup = () => {
        console.log('state email', formValid)
     }
   };
-    const register = (event)=>{
+//     const register = (event)=>{
+//       setLoading(true);
+//     event.preventDefault();
+//       const {username, phone ,email,password} = User
+//       if (username && phone && email && password){
+//       axios.post(" http://localhost:20090/api/user/register",User )
+//       .then(res=>{
+//         alert(res.data.message); 
+//         // localStorage.setItem("ateller-token", res.data.data);
+//         setLoading(false)
+//       }).catch((err)=>
+//         console.error(err)
+//         //setLoginUser(res.data.user)
+//       );
+// }
+//     }
+
+    const onSubmitRegistrationForm = async (event) => {
+      event.preventDefault();
       setLoading(true);
-    event.preventDefault();
-      const {username, phone ,email,password} = User
+
+      const {username, phone ,email,password} = User;
+
       if (username && phone && email && password){
-      axios.post(" http://localhost:20090/api/user/register",User )
-      .then(res=>{
-        alert(res.data.message); 
-        // localStorage.setItem("ateller-token", res.data.data);
+        const register = await registerUser(User)
         setLoading(false)
-      }).catch((err)=>
-        console.error(err)
-        //setLoginUser(res.data.user)
-      );
-}
+        console.log('register: ', register);
+        
+      }
+
+    }
+
+    const registerUser = async (userObject) => {
+      const registerResponse = await api.registerUser(userObject)
+
+      if (registerResponse.status >= 200 && registerResponse.status < 300) {
+        return registerResponse.data;
+      }else {
+        return null;
+      }
     }
       
      
@@ -50,7 +76,7 @@ const Signup = () => {
           <p className="mb-12">
             Already have an account? <a href="/login">Sign in</a>
           </p>
-          <form  className=" flex flex-col " onSubmit={register}>
+          <form  className=" flex flex-col " onSubmit={onSubmitRegistrationForm}>
             <div className=" flex flex-col">
               <label className=" text-left" for="name">
                 Username

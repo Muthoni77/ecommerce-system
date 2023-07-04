@@ -1,9 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 // import { connect } from 'react-redux';
-import axios from "axios";
 import ProductContext from "../Context/Product-Context";
 import Header from "../Components/Header";
-import { Link } from "react-router-dom";
 // import { removeProductFromCart } from '../store/actions';
 import {getUser} from '../services/auth'
 
@@ -15,18 +13,18 @@ const CartPage = (props) => {
   
   console.log(context);
   
-  const addCart=async()=>{
-  try {
-      const response=await axios.post("http://localhost:20090/api/cartitem/",context.cart);
-      console.log("Cartitem added successfully");
-      console.log(response.data.data);
+  // const addCart=async()=>{
+  // try {
+  //     const response=await axios.post("http://localhost:20090/api/cartitem/",context.cart);
+  //     console.log("Cartitem added successfully");
+  //     console.log(response.data.data);
       
-  }
-  catch (error) {
-    console.log(error)
-  } 
+  // }
+  // catch (error) {
+  //   console.log(error)
+  // } 
     
-  }
+  // }
 
   const getTotalPrice = () => {
     return context.cart.reduce(
