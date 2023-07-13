@@ -16,6 +16,8 @@ import CartPage from './Pages/Cart';
 import { Orders } from './Pages/Orders';
 import Signup from './Registration-Form/Signup';
 
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css"
 
 function App() {
 
@@ -24,6 +26,12 @@ function App() {
       
       <GlobalState>
         <BrowserRouter>
+        <ToastContainer
+          autoClose={5000}
+          position='bottom-right'
+          theme='colored'
+          hideProgressBar={true}
+        />
           <Routes>
             <Route path="/Login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

@@ -1,29 +1,68 @@
 
 import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { BiHide, BiShow } from "react-icons/bi";
+import {validateEmail} from '../services/validator'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faUser, faSpinner} from '@fortawesome/free-solid-svg-icons'
+
+import {toast} from 'react-toastify'
+
+import api from '../services/api'
 
 function Login() {
-  const navigate = useNavigate()
   const [user,setUser] = useState({
     email:"",
     password: ""
 })
+
+const [formValid, setFormValid ] = useState(false);
 const handleChange = e =>{
 const {name,value} = e.target
-setUser({
-...user,//spread operator 
-[name]:value
-})
-}
-const login =(event)=>{
-  event.preventDefault()
-  axios.post("http://localhost:7001/api/user/Login",user)
-  .then(res=>{alert(res.data.message); localStorage.setItem("token", res.data.data);}).catch((err)=>
-    console.error(err)
-    //setLoginUser(res.data.user)
-  )}
+  setUser({
+    ...user,//spread operator 
+    [name]:value
+  })
 
+  if (name === 'email') {
+    //console.log('validate email', validateEmail(value))
+    setFormValid(validateEmail(value))
+    console.log('state email', formValid)
+  }
+}
+ //Toggle password visibility state
+ const [showPassword, setShowPassword] = useState(false);
+
+ //Loading state
+ const [loading, setLoading] = useState(false);
+
+
+
+const loginUser = async (email, password) => {
+  const loginResponse = await api.loginUser(email, password)
+
+  if (loginResponse.status >= 200 && loginResponse.status < 300) {
+    return loginResponse.data;
+  }else {
+    return null;
+  }
+}
+
+const formSubmitted = async (event) => {
+  setLoading(true)
+  event.preventDefault()
+  const login = await loginUser(user.email, user.password);
+  console.log(login);
+
+  if (login) {
+        toast.success(login.message); 
+        localStorage.setItem("ateller-token", login.data);
+        setLoading(false)
+  }else {
+    setLoading(false)
+  }
+}
+
+ 
 
   return (
     // <div
@@ -38,7 +77,7 @@ const login =(event)=>{
         <h1 className=" font-bold  ">Login</h1>
         <p className="mb-12">Welcome to Ateller</p>
 
-        <form className=" flex flex-col" onSubmit={login}>
+        <form className=" flex flex-col" onSubmit={formSubmitted}>
           <div className=" flex flex-col">
             <label className=" text-left" for="email">
               Email
@@ -60,22 +99,52 @@ const login =(event)=>{
             <input
               className=" mb-4 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
               id="password"
-              type="text"
+              type={`${showPassword ? "text" : "password"}`}
               placeholder="Password"
               name="password"
               value={user.password}
               onChange={handleChange}
             />
+            {showPassword ? (
+                <BiHide
+                  className="absolute top-[50%] cursor-pointer hover:scale-105 text-dark"
+                  size={18}
+                  onClick={() => {
+                    setShowPassword(false);
+                  }}
+                />
+              ) : (
+                 <BiShow
+                   className="absolute text-left  top-[50%] cursor-pointer hover:scale-105 text-dark"
+                   size={18}
+                   onClick={() => {
+                     setShowPassword(true);
+                   }}
+                />
+              )}
           </div>
           <div className="mb-4">
             <a href="/forgotpassword">Forgot your password?</a>
           </div>
 
           <div className="flex flex-col">
+            <div className={loading ? "hidden" : ""}>
             <button
               type="submit"
-              className=" mb-5 h-14 w-96 bg-blue-300 rounded-xl"
-            >Sign In</button>
+              disabled={!formValid}
+              className={formValid && user.password.length > 3 ? "mb-5 h-14 w-96 bg-blue-600 text-white font-bold hover:bg-blue-700 rounded-xl" : "mb-5 h-14 w-96 bg-gray-500 text-white font-bold hover:cursor-not-allowed rounded-xl"}
+            >
+              <FontAwesomeIcon className="mr-2" icon={faUser} />
+              Sign In</button>
+            </div>
+
+              <button
+              disabled={true}
+              className={!loading ? "hidden" : "mb-5 h-14 w-96 bg-gray-500 text-white font-bold hover:cursor-not-allowed rounded-xl"}
+            >
+
+              <FontAwesomeIcon className="mr-2" icon={faSpinner} />
+              Loading ...</button>
           </div>
           <div className="mb-4">
             <p>

@@ -1,6 +1,9 @@
 import { useState } from "react"
-import axios from "axios";
+import {validateEmail} from '../services/validator'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faUser, faSpinner} from '@fortawesome/free-solid-svg-icons'
 
+import api from '../services/api'
 
 const Signup = () => {
   const [User , setUser] = useState({
@@ -11,45 +14,60 @@ const Signup = () => {
     password2:""
   })
 
-  // const handleChange = e =>{
-  //   const {name,value} = e.target
-  //   setUser({
-  //   ...User,//spread operator 
-  //   [name]:value
-  //   })
-  //   }
+  const [loading , setLoading] = useState(false);
+  const [formValid , setFormValid] = useState(false);
+
   const handleChange = (event) => { 
     setUser({ ...User, [event.target.name]: event.target.value });
-  };
-
-
-  // const handleChange = (event) => {
-  //   //     alert("hello");
-  //   // console.log("value set is ");
-  //   // console.log({ valueOne: event.target.name });
-  //   // console.log({ valueTwo: event.target.value });
-  //   setUser({ ...User, [event.target.name]: event.target.value });
-  // };
- 
-
-    const register = (event)=>{
-      // const register = (event) => {
-    event.preventDefault();
-      const {username, phone ,email,password} = User
-      if (username && phone && email && password){
-      axios.post(" http://localhost:7001/api/user/register",User )
-      
-      //  .then(res=>console.log(res))
-          // .then(res=>{alert(res.data.message)})
-          .then(res=>alert(res.data.message)).catch((err)=>
-    console.error(err))
-      //  console.log("User");
-      //   console.log(User);
-      }
-      else{
-          alert("invalid input")
-      };
+    if (event.target.name === 'email') {
+      // console.log('validate email', validateEmail(event.target.value))
+      setFormValid(validateEmail(event.target.value))
+       console.log('state email', formValid)
     }
+  };
+//     const register = (event)=>{
+//       setLoading(true);
+//     event.preventDefault();
+//       const {username, phone ,email,password} = User
+//       if (username && phone && email && password){
+//       axios.post(" http://localhost:20090/api/user/register",User )
+//       .then(res=>{
+//         alert(res.data.message); 
+//         // localStorage.setItem("ateller-token", res.data.data);
+//         setLoading(false)
+//       }).catch((err)=>
+//         console.error(err)
+//         //setLoginUser(res.data.user)
+//       );
+// }
+//     }
+
+    const onSubmitRegistrationForm = async (event) => {
+      event.preventDefault();
+      setLoading(true);
+
+      const {username, phone ,email,password} = User;
+
+      if (username && phone && email && password){
+        const register = await registerUser(User)
+        setLoading(false)
+        console.log('register: ', register);
+        
+      }
+
+    }
+
+    const registerUser = async (userObject) => {
+      const registerResponse = await api.registerUser(userObject)
+
+      if (registerResponse.status >= 200 && registerResponse.status < 300) {
+        return registerResponse.data;
+      }else {
+        return null;
+      }
+    }
+      
+     
 
     return (
       <div className=" flex justify-center items-center mt-20 ">
@@ -58,7 +76,7 @@ const Signup = () => {
           <p className="mb-12">
             Already have an account? <a href="/login">Sign in</a>
           </p>
-          <form  className=" flex flex-col ">
+          <form  className=" flex flex-col " onSubmit={onSubmitRegistrationForm}>
             <div className=" flex flex-col">
               <label className=" text-left" for="name">
                 Username
@@ -131,12 +149,24 @@ const Signup = () => {
               />
             </div>
             <div className="flex flex-col">
-              <button
-                type="submit"
-                className=" mb-5 h-10 w-36 bg-blue-300 rounded-xl ml-32"
-                onClick={register}
-                > Submit</button>
+            <div className={loading ? "hidden" : ""}>
+            <button
+              type="submit"
+              disabled={!formValid}
+              className={formValid && User.password.length > 3 ? "mb-5 h-14 w-96 bg-blue-600 text-white font-bold hover:bg-blue-700 rounded-xl" : "mb-5 h-14 w-96 bg-gray-500 text-white font-bold hover:cursor-not-allowed rounded-xl"}
+            >
+              <FontAwesomeIcon className="mr-2" icon={faUser} />
+              Sign In</button>
             </div>
+
+              <button
+              disabled={true}
+              className={!loading ? "hidden" : "mb-5 h-14 w-96 bg-gray-500 text-white font-bold hover:cursor-not-allowed rounded-xl"}
+            >
+              <FontAwesomeIcon className="mr-2" icon={faSpinner} />
+              Loading ...</button>
+          </div>
+           
           </form>
         </div>
       </div>

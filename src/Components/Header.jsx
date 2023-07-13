@@ -12,7 +12,7 @@ const Header = ({onChangeCategory,cartItemNumber}) => {
 
   
   const fetchCategories=async()=>{
-      const response=await axios.get("http://localhost:7001/api/category/");
+      const response=await axios.get("http://localhost:20090/api/category/");
       console.log("all categories from response");
       console.log(response.data.data);
       setCategories(response.data.data);
@@ -32,13 +32,15 @@ useEffect(()=>{
   
   return(
   <div>
-    <header class="bg-white">
-      <div class="container mr-2 px-4 py-8 flex items-center justify-between">
-        <div class=" md:w-48 flex-shrink-0 flex">
+    <header className="bg-white ">
+      <div className="container mr-2 px-4 py-8 flex items-center justify-between">
+     
+        <a href= "/" className=" md:w-48 flex-shrink-0 flex ">
           {/* <button onClick={()}className="text-blue-500 font-extrabold text-4xl"> ATELLER</button> */}
-          <h1 className="text-blue-500 font-extrabold text-4xl ">ATELLER</h1>
+      <h1 className="text-blue-500 font-extrabold text-4xl hover:no-underline">ATELLER</h1>
           <img src={logo} alt="logo" className="h-10 md:h-12 " />
-        </div>
+        </a>
+        
         <div class="w-full max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100 rounded-md hidden xl:flex items-center ">
           <select
             className="bg-transparent uppercase font-semibold text-sm p-4 mr-4"

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 function OTP() {
   return (
@@ -42,17 +43,17 @@ function OTP() {
           </div>
            <div className="flex flex-col space-y-5">
                   <div>
-                    <a
+                    <Link
                       // onClick={() => verfiyOTP()}
                       className="flex flex-row cursor-pointer items-center justify-center text-center w-full border rounded-xl outline-none py-4 bg-blue-300 border-none text-black text-sm shadow-sm mt-4"
                     >
                       Verify Account
-                    </a>
+                    </Link>
                   </div>
 
                   <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-black">
                     <p>Didn't recieve code?</p>{" "}
-                    <a
+                    <Link
                       className="flex flex-row items-center"
                       // style={{
                       //   color: disable ? "gray" : "blue",
@@ -62,7 +63,7 @@ function OTP() {
                       // onClick={() => resendOTP()}
                     >
                       {/* {disable ? `Resend OTP in ${timerCount}s` : "Resend OTP"} */}
-                    </a>
+                    </Link>
                   </div>
                 </div>
         </form>

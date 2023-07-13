@@ -3,14 +3,13 @@ import React, { useEffect, useState,useContext } from "react";
 
 import ProductContext from "../Context/Product-Context";
 import Header from "../Components/Header";
-import Home from "../Components/Home";
 // import Home from "./Components/Home";
 // import { addProductToCart } from '../store/actions';
 
 const ProductsPage = (props) => {
 
   const {products}=useContext(ProductContext);
-  const [allProducts,setAllProducts]=useState(products);
+  // const [allProducts,setAllProducts]=useState(products);
   const [filteredProducts,setFilteredProducts]=useState([])
   const [category,setCategory]=useState("all")
 
@@ -54,7 +53,7 @@ const ProductsPage = (props) => {
       setFilteredProducts(products);
     }
      
-  },[category])
+  },[category, products])
 
   
 
