@@ -1,43 +1,55 @@
 import React, { useState } from "react";
 import {validateEmail} from '../services/validator';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faUser, faSpinner} from '@fortawesome/free-solid-svg-icons'
-import axios from "axios";
+import {faUser, faSpinner} from '@fortawesome/free-solid-svg-icons';
+import api from "../services/api";
+import { toast } from "react-toastify";
 
 function Forgotpassword() {
-
-  const [email,setEmail] = useState({
+  const [user,setUser] = useState({
     email:"",
 })
+const [formValid, setFormValid ] = useState(false);
 const handleChange = e =>{
   const {name,value} = e.target
-    setEmail({
-      ...email,//spread operator 
+    setUser({
+      ...user,//spread operator 
       [name]:value
     })
+
     if (name === 'email') {
-      //console.log('validate email', validateEmail(value))
+      // console.log('validate email', validateEmail(value))
       setFormValid(validateEmail(value))
       console.log('state email', formValid)
     }
   }
   const [loading, setLoading] = useState(false);
-  const [formValid, setFormValid ] = useState(false);
+ 
+// 
+  const forgotPassUser = async (email) => {
+    const forgotPassResponse = await api.forgotPassUser(email)
+  
+    if (forgotPassResponse.status >= 200 && forgotPassResponse.status < 300) {
+      return forgotPassResponse.data;
+    }else {
+      return null;
+    }
+  }
+const formSubmitted = async (event) => {
+  setLoading(true)
+  event.preventDefault()
+  const forgotPass = await forgotPassUser(user.email);
+  console.log(forgotPass);
 
-
-const forgotPass = async (event)=>{  
-      setLoading(true);
-      event.preventDefault()
-      axios.post("http://localhost:20090/api/user/forgotpass",email)
-      .then(res=>{
-        alert(res.data.message); 
-        // localStorage.setItem("ateller-token", res.data.data);
+  if (forgotPass) {
+        toast.success(forgotPass.message); 
+        localStorage.setItem("ateller-token", forgotPass.data);
         setLoading(false)
-      }).catch((err)=>
-        console.error(err)
-     
-      );
+  }else {
+    setLoading(false)
+  }
 }
+
 
   return (
     <div className="  flex justify-center items-center mt-20 ">
@@ -47,16 +59,18 @@ const forgotPass = async (event)=>{
           Enter your email to receive your password reset link
         </p>
 
-        <form className=" flex flex-col"onSubmit={forgotPass}>
+        <form className=" flex flex-col"onSubmit={formSubmitted}>
           <div className=" flex flex-col">
-            <label className=" text-left" for="email">
+          <label className=" text-left" for="email">
               Email
             </label>
             <input
-              className=" mb-5 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
+              className=" mb-4 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
               id="Email"
               type="text"
               placeholder="Email"
+              name="email"
+              value={user.email}
               onChange={handleChange}
             />
           </div>

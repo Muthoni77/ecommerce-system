@@ -13,7 +13,7 @@ const paths = {
         path: '/'
     },
     forgetPassword: {
-        path: '/'
+        path: '/api/user/forgotpass'
     },
     categories: {
         path: '/'
@@ -34,10 +34,16 @@ const registerUser = async (requestObject) => {
     const response = await http.post(server_url + paths.register.path , requestObject )
     return response;
 }
+const forgotPassUser = async (email) => {
+    const requestObject={
+        email: email,
+    }
+    const response = await http.post(server_url + paths.forgetPassword.path , requestObject )
+    return response;
+}
 
 
-
-const exportFunctions = {loginUser, registerUser}
+const exportFunctions = {loginUser, registerUser,forgotPassUser}
 
 
 export default exportFunctions;

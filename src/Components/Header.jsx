@@ -12,7 +12,7 @@ const Header = ({onChangeCategory,cartItemNumber}) => {
 
   
   const fetchCategories=async()=>{
-      const response=await axios.get("http://localhost:20090/api/category/");
+      const response=await axios.get("http://localhost:40090/api/category/");
       console.log("all categories from response");
       console.log(response.data.data);
       setCategories(response.data.data);
