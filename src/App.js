@@ -36,7 +36,7 @@ function App() {
             <Route path="/Login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgotpassword" element={<Forgotpassword />} />
-            <Route path="/resetpassword" element={<Resetpassword />} />
+            <Route path="/resetpassword/:token" element={<Resetpassword />} />
             <Route path="/otp" element={<OTP />} />
             <Route path="/navigate" element={<Navigate/>} />
             <Route path="/cart" element={<CartPage />} />

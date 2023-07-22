@@ -23,6 +23,7 @@ const {name,value} = e.target
     [name]:value
   })
 
+
   if (name === 'email') {
     //console.log('validate email', validateEmail(value))
     setFormValid(validateEmail(value))

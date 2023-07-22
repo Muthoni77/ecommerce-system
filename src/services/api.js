@@ -15,6 +15,9 @@ const paths = {
     forgetPassword: {
         path: '/api/user/forgotpass'
     },
+    resetPassword: {
+        path: '/api/user/resetpass'
+    },
     categories: {
         path: '/'
     }
@@ -41,9 +44,16 @@ const forgotPassUser = async (email) => {
     const response = await http.post(server_url + paths.forgetPassword.path , requestObject )
     return response;
 }
+const resetPassUser = async (newPassword) => {
+    const requestObject={
+        newPassword: newPassword,
+    }
+    const response = await http.post(server_url + paths.resetPassword.path , requestObject )
+    return response;
+}
 
 
-const exportFunctions = {loginUser, registerUser,forgotPassUser}
+const exportFunctions = {loginUser, registerUser,forgotPassUser, resetPassUser}
 
 
 export default exportFunctions;
