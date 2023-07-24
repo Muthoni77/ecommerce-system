@@ -44,11 +44,18 @@ const forgotPassUser = async (email) => {
     const response = await http.post(server_url + paths.forgetPassword.path , requestObject )
     return response;
 }
-const resetPassUser = async (newPassword) => {
+const resetPassUser = async (newPassword, token) => {
     const requestObject={
-        newPassword: newPassword,
+        newPassword: newPassword
+        
     }
-    const response = await http.post(server_url + paths.resetPassword.path , requestObject )
+    const config = {
+        headers: {
+            "Content-type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
+      };
+    const response = await http.post(server_url + paths.resetPassword.path , requestObject, config )
     return response;
 }
 
