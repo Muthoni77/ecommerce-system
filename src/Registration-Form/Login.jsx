@@ -97,6 +97,7 @@ const formSubmitted = async (event) => {
             <label className=" text-left" for="password">
               Password
             </label>
+            <div className="relative">
             <input
               className=" mb-4 h-14 w-96 rounded-xl border-[1px] border-gray-400 px-4"
               id="password"
@@ -108,7 +109,7 @@ const formSubmitted = async (event) => {
             />
             {showPassword ? (
                 <BiHide
-                  className="absolute top-[50%] cursor-pointer hover:scale-105 text-dark"
+                  className="absolute top-[25%] right-[2%] cursor-pointer hover:scale-105 text-dark"
                   size={18}
                   onClick={() => {
                     setShowPassword(false);
@@ -116,13 +117,14 @@ const formSubmitted = async (event) => {
                 />
               ) : (
                  <BiShow
-                   className="absolute text-left  top-[50%] cursor-pointer hover:scale-105 text-dark"
+                   className="absolute  top-[25%] right-[2%] cursor-pointer hover:scale-105 text-dark"
                    size={18}
                    onClick={() => {
                      setShowPassword(true);
                    }}
                 />
               )}
+          </div>
           </div>
           <div className="mb-4">
             <a href="/forgotpassword">Forgot your password?</a>

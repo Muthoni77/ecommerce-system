@@ -69,10 +69,12 @@ const ProductsPage = (props) => {
               cartItemNumber={context.cart.reduce((count, curItem) => {
                 return count + curItem.quantity;
               }, 0)}
+              currentPage='home'
+              path='/'
             />
 
           </div>
-          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mx-20 mt-20 ">
+          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mx-20 mt-10 ">
             {/* <div className=" "> */}
             {filteredProducts.map((product) => (
               <div

@@ -10,20 +10,13 @@ export const Orders = () => {
   
   return (
     <div className="">
-      <Header/>
-      <div className = "flex gap-x-4 mx-20">
-         <Link to="/">Home __ </Link>
-         <Link to="/cart">Shopping Cart __</Link>
-          <Link to="/orders">Checkout </Link>
-      </div>
-      <h1 className="text-black-100 font-normal text-4xl ">Checkout</h1>
-      <h1>Shopping Cart</h1>
-      <hr class="h-px my-4 bg-gray-300 border-0 dark:bg-gray-700"></hr>
+      <Header currentPage="orders" path="/path" />
+      
       <div className="flex"> 
-      <div className="flex flex-col w-3/4 mx-20">
+      <div className="flex flex-col mx-20">
         <h1 className=" mt-10  font-bold ">Personal information</h1>
         <hr class="h-px my-4 bg-gray-300 border-0 dark:bg-gray-700"></hr>
-        <form className=" flex flex-row mt-0  justify-between items-center">
+        <form className=" flex flex-row gap-5 items-center">
           <div className=" flex flex-col">
             <label className=" text-left" htmlFor="fname">
             Firstname
@@ -102,16 +95,22 @@ export const Orders = () => {
           </div>
         </form>
 
-        <div className=" flex flex-col ">
+        <div className=" flex flex-col  ">
           <label className=" text-left" htmlFor="Note">
             Note
           </label>
-          <input
-            className=" mb-3 h-36 w-98 m-7 border-[1px] border-gray-400 px-4"
+          {/* <input
+            className=" mb-3 h-36  m-7 border-[1px] border-gray-400 px-4"
             id="Email"
             type="text"
             value="mohamednasra@gmail.com"
-          />
+          /> */}
+          <input
+              className=" mb-3 h-36 border-[1px] border-gray-400 px-4"
+              id="country"
+              type="text"
+              placeholder="Country"
+            />
         </div>
       </div>
       <div className="mx-20 mt-20">
