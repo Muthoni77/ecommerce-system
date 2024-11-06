@@ -1,15 +1,12 @@
 import React, { useEffect, useState,useContext } from "react";
-// import { connect } from 'react-redux';
-
 import ProductContext from "../Context/Product-Context";
 import Header from "../Components/Header";
-// import Home from "./Components/Home";
-// import { addProductToCart } from '../store/actions';
+
 
 const ProductsPage = (props) => {
 
   const {products}=useContext(ProductContext);
-  // const [allProducts,setAllProducts]=useState(products);
+  const [allProducts,setAllProducts]=useState(products);
   const [filteredProducts,setFilteredProducts]=useState([])
   const [category,setCategory]=useState("all")
 
@@ -65,14 +62,13 @@ const ProductsPage = (props) => {
         <React.Fragment>
           <div className="">
             <Header
-           onChangeCategory={handleChangeCategory}
+              onChangeCategory={handleChangeCategory}
               cartItemNumber={context.cart.reduce((count, curItem) => {
                 return count + curItem.quantity;
               }, 0)}
-              currentPage='home'
-              path='/'
+              currentPage="home"
+              path="/"
             />
-
           </div>
           <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mx-20 mt-10 ">
             {/* <div className=" "> */}
@@ -84,7 +80,7 @@ const ProductsPage = (props) => {
               >
                 <img
                   className="hover:grow hover:shadow-lg"
-                  src={product.image}
+                  src={product.imageSrc}
                   alt="products"
                 />
                 <div className="ml-20 flex items-center justify-between">

@@ -60,7 +60,7 @@ const CartPage = (props) => {
               <div className="bg-blue flex w-2/4 mx-auto mb-7  justify-between">
                 <img
                   className="w-[100px] h-[100px]"
-                  src={cartItem.image}
+                  src={cartItem.imageSrc}
                   alt={cartItem.name}
                 />
                 <strong>{cartItem.name}</strong> - ${cartItem.price} (
@@ -81,10 +81,9 @@ const CartPage = (props) => {
           ))}
           <h1 className="mt-7 font-bold">TOTAL Ksh: {getTotalPrice()}</h1>
         </ul>
-           
+
         {/* <button onClick={addCart} >Checkout </button> */}
         <button onClick={checkoutValidator}>Checkout </button>
-
       </main>
     </React.Fragment>
   );
