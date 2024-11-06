@@ -1,13 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 // import { connect } from 'react-redux';
 
 import ProductContext from "../Context/Product-Context";
 import Header from "../Components/Header";
-import Home from "../Components/Home";
 // import Home from "./Components/Home";
 // import { addProductToCart } from '../store/actions';
 
 const ProductsPage = (props) => {
+
+  const {products}=useContext(ProductContext);
+  // const [allProducts,setAllProducts]=useState(products);
+  const [filteredProducts,setFilteredProducts]=useState([])
+  const [category,setCategory]=useState("all")
+
+  // const [initialRender,setInitialRender]=useState(false)
+
   // const [products,setProducts] = useState ([]);
   // async function fetch_data(){
   //   const resource = await fetch("http://localhost:5000/api ",);
@@ -24,22 +31,52 @@ const ProductsPage = (props) => {
     style: "currency",
     currency: "Ksh",
   });
+
+
+  const handleChangeCategory=(newCategory)=>{
+    // alert("Category changed to "+newCategory);
+    setCategory(newCategory);
+  }
+
+ 
+  useEffect(()=>{
+    setFilteredProducts(products);
+  },[products])
+
+  useEffect(()=>{
+    if(category!=="all"){
+      const ourFilteredProducts=products.filter((product)=>product.category===category);
+      setFilteredProducts(ourFilteredProducts);
+      console.log("ourFilteredProducts");
+      console.log(ourFilteredProducts);
+    }else{
+      setFilteredProducts(products);
+    }
+     
+  },[category, products])
+
+  
+
+
+
   return (
     <ProductContext.Consumer>
       {(context) => (
         <React.Fragment>
           <div className="">
-            <Header/>
-            <Home
-            
+            <Header
+           onChangeCategory={handleChangeCategory}
               cartItemNumber={context.cart.reduce((count, curItem) => {
                 return count + curItem.quantity;
               }, 0)}
+              currentPage='home'
+              path='/'
             />
+
           </div>
-          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mx-20 mt-20 ">
+          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mx-20 mt-10 ">
             {/* <div className=" "> */}
-            {context.products.map((product) => (
+            {filteredProducts.map((product) => (
               <div
                 className="bg-gray-100 "
                 key={product.id}
@@ -47,7 +84,7 @@ const ProductsPage = (props) => {
               >
                 <img
                   className="hover:grow hover:shadow-lg"
-                  src={product.imageSrc}
+                  src={product.image}
                   alt="products"
                 />
                 <div className="ml-20 flex items-center justify-between">

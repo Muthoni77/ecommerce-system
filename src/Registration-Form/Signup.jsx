@@ -1,50 +1,108 @@
 import { useState } from "react"
+import {validateEmail} from '../services/validator'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faUser, faSpinner} from '@fortawesome/free-solid-svg-icons'
 
-function  Signup() {
-    const [username,  setUsername] = useState("");
-     const [phoneNo, setPhoneNo] = useState("");
-    const [email,  setEmail] = useState("");
-    const [password,  setPassword] = useState("");
-    
-    
- 
- 
+import api from '../services/api'
+
+const Signup = () => {
+  const [User , setUser] = useState({
+    username:"",
+    phone:"",
+    email:"",
+    password:"",
+    password2:""
+  })
+
+  const [loading , setLoading] = useState(false);
+  const [formValid , setFormValid] = useState(false);
+
+  const handleChange = (event) => { 
+    setUser({ ...User, [event.target.name]: event.target.value });
+    if (event.target.name === 'email') {
+      // console.log('validate email', validateEmail(event.target.value))
+      setFormValid(validateEmail(event.target.value))
+       console.log('state email', formValid)
+    }
+  };
+//     const register = (event)=>{
+//       setLoading(true);
+//     event.preventDefault();
+//       const {username, phone ,email,password} = User
+//       if (username && phone && email && password){
+//       axios.post(" http://localhost:20090/api/user/register",User )
+//       .then(res=>{
+//         alert(res.data.message); 
+//         // localStorage.setItem("ateller-token", res.data.data);
+//         setLoading(false)
+//       }).catch((err)=>
+//         console.error(err)
+//         //setLoginUser(res.data.user)
+//       );
+// }
+//     }
+
+    const onSubmitRegistrationForm = async (event) => {
+      event.preventDefault();
+      setLoading(true);
+
+      const {username, phone ,email,password} = User;
+
+      if (username && phone && email && password){
+        const register = await registerUser(User)
+        setLoading(false)
+        console.log('register: ', register);
+        
+      }
+
+    }
+
+    const registerUser = async (userObject) => {
+      const registerResponse = await api.registerUser(userObject)
+
+      if (registerResponse.status >= 200 && registerResponse.status < 300) {
+        return registerResponse.data;
+      }else {
+        return null;
+      }
+    }
+      
+     
+
     return (
       <div className=" flex justify-center items-center mt-20 ">
         <div className=" text-black">
           <h1 className=" mb-6 font-bold ">SignUp</h1>
           <p className="mb-12">
-            Already have an account? <a href="#!">Sign in</a>
+            Already have an account? <a href="/login">Sign in</a>
           </p>
-          <form className=" flex flex-col ">
+          <form  className=" flex flex-col " onSubmit={onSubmitRegistrationForm}>
             <div className=" flex flex-col">
-              <label className=" text-left" for="userName">
+              <label className=" text-left" for="name">
                 Username
               </label>
               <input
                 className=" mb-4 h-10 w-96 rounded-xl border-[1px] border-gray-400 px-4"
-                id="userName"
+                id="Name"
+                name="username"
                 type="text"
-                placeholder="userName"
-                value={username}
-                onChange={(e) => {
-                  setUsername(e.target.value);
-                }}
+                placeholder="username"
+                value={User.username}
+                onChange={handleChange}
               />
             </div>
              <div className="flex flex-col">
-            <label className=" text-left" for="phoneNo">
+            <label className=" text-left" for="phone">
               Phone No
             </label>
             <input
               className=" mb-3 h-10 w-96 rounded-xl border-[1px] border-gray-400 px-4"
-              id="phone no"
+              id="create-account-firstname"
               type="number"
+              name="phone"
               placeholder="PhoneNo"
-                value={phoneNo}
-                onChange={(e) => {
-                  setPhoneNo(e.target.value);
-                }}
+                value={User.phone}
+                onChange={handleChange}
               />
             </div>
 
@@ -54,13 +112,12 @@ function  Signup() {
               </label>
               <input
                 className=" mb-4 h-10 w-96 rounded-xl border-[1px] border-gray-400 px-4"
-                id="Email"
+                id="create-account-phone"
                 type="text"
+                name="email"
                 placeholder="Email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
+                value={User.email}
+                onChange={handleChange}
               />
             </div>
             <div className="flex flex-col">
@@ -69,59 +126,51 @@ function  Signup() {
               </label>
               <input
                 className=" mb-4 h-10 w-96 rounded-xl border-[1px] border-gray-400 px-4"
-                id="password"
+                id="create-account-email"
                 type="text"
                 placeholder="Password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
+                name="password"
+                value={User.password}
+                onChange={handleChange}
+              />
+            </div>
+             <div className=" flex flex-col">
+              <label className=" text-left" for="name">
+                Confirm Password
+              </label>
+              <input
+                className=" mb-4 h-10 w-96 rounded-xl border-[1px] border-gray-400 px-4"
+                id="Password"
+                name="password2"
+                type="text"
+                placeholder="confirm password"
+                value={User.password2}
+                onChange={handleChange}
               />
             </div>
             <div className="flex flex-col">
-              <input
-                type={"submit"}
-                value="Sign up"
-                className=" mb-5 h-10 w-36 bg-blue-300 rounded-xl ml-32"
-              />
+            <div className={loading ? "hidden" : ""}>
+            <button
+              type="submit"
+              disabled={!formValid}
+              className={formValid && User.password.length > 3 ? "mb-5 h-14 w-96 bg-blue-600 text-white font-bold hover:bg-blue-700 rounded-xl" : "mb-5 h-14 w-96 bg-gray-500 text-white font-bold hover:cursor-not-allowed rounded-xl"}
+            >
+              <FontAwesomeIcon className="mr-2" icon={faUser} />
+              Sign In</button>
             </div>
+
+              <button
+              disabled={true}
+              className={!loading ? "hidden" : "mb-5 h-14 w-96 bg-gray-500 text-white font-bold hover:cursor-not-allowed rounded-xl"}
+            >
+              <FontAwesomeIcon className="mr-2" icon={faSpinner} />
+              Loading ...</button>
+          </div>
+           
           </form>
         </div>
       </div>
     );
 }
-
 export default Signup
 
-// div class="col-md-6"> 
-//   {/* <img src={logo} className="login-image" alt="image" width="100%"/> */}
-//   </div>  
-//    <div class="col-md-6 ">
-//         <form className='col'>
-//     <div className="form-group">
-//       <label for="exampleInputEmail1">Email address</label>
-     
-//       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value={email} onChange={(e)=>{
-// setEmail(e.target.value)
-//       }}/>
-    
-//       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-//     </div>
-   
-//     <div className="form-group">
-//       <label for="exampleInputPassword1">Password</label>
-     
-//       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" value={password} onChange ={(e)=>{
-//         setPassword(e.target.value)
-//       }}/>
-//     </div>
-//     <div className="form-check">
-//       <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-//       <label class="form-check-label" for="exampleCheck1">Check me out</label>
-//     </div>
-    
-//     <button type="submit" class="btn btn-primary">Submit</button>
-//   </form> </div>
-
-//   </div>
-//   </div>

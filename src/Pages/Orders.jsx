@@ -1,140 +1,219 @@
 import React, { useContext } from "react";
 import ProductContext from "../Context/Product-Context";
+import Header from "../Components/Header";
+import { Link } from "react-router-dom";
 
 export const Orders = () => {
-  const { cart } = useContext(ProductContext);
-   const getTotalPrice = () => {
-     return cart.reduce(
-       (accumulator, item) => accumulator + item.quantity * item.price,
-       0
-     );
-   };
 
+  const {cart} = useContext(ProductContext)
+  console.log("cart", cart)
+  
   return (
-    <div className="flex mx-20">
-      <div className="flex flex-col w-2/4">
-        <h1 className=" mt-10  font-bold ">Personal details</h1>
-        <form className=" flex flex-row mt-7  justify-between items-center">
+    <div className="">
+      <Header currentPage="orders" path="/path" />
+      
+      <div className="flex"> 
+      <div className="flex flex-col mx-20">
+        <h1 className=" mt-10  font-bold ">Personal information</h1>
+        <hr class="h-px my-4 bg-gray-300 border-0 dark:bg-gray-700"></hr>
+        <form className=" flex flex-row gap-5 items-center">
           <div className=" flex flex-col">
-            <label className=" text-left" for="shippingAddress">
-              Shipping Address
+            <label className=" text-left" htmlFor="fname">
+            Firstname
             </label>
             <input
-              className=" mb-3 h-10 w-72  border-[1px] border-gray-400 px-4 "
-              id="homeAddress"
+              className=" mb-3 h-10 w-64 border-[1px] border-gray-400 px-4"
+              id="firstname"
               type="text"
-              placeholder="Rainbow resort"
+              placeholder="Firstname"
             />
+              <label className=" text-left" htmlFor="fname">
+            Address
+            </label>
             <input
-              className=" mb-3 h-10 w-72  border-[1px] border-gray-400 px-4"
-              id="officeAddress"
+              className=" mb-3 h-10 w-64  border-[1px] border-gray-400 px-4"
+              id="address"
               type="text"
-              placeholder="Raphta Road"
+              placeholder="Address"
             />
+              <label className=" text-left" htmlFor="fname">
+            Country
+            </label>
             <input
-              className=" mb-3 h-10 w-72  border-[1px] border-gray-400 px-4"
-              id="primaryAddress"
+              className=" mb-3 h-10 w-64 border-[1px] border-gray-400 px-4"
+              id="country"
               type="text"
-              placeholder="Uthiru77"
+              placeholder="Country"
             />
+              <label className=" text-left" htmlFor="fname">
+            State/ County
+            </label>
             <input
-              className=" mb-3 h-10 w-72  border-[1px] border-gray-400 px-4"
-              id="primaryAddress"
+              className=" mb-3 h-10 w-64  border-[1px] border-gray-400 px-4"
+              id="state"
               type="text"
-              placeholder="Uthiru77"
+              placeholder="State / County"
             />
           </div>
           <div className=" flex flex-col">
-            <label className=" text-left" for="shippingAddress">
-              Shipping Address
+            <label className=" text-left" htmlFor="shippingAddress">
+              Second Name
             </label>
             <input
-              className=" mb-3 h-10 w-72  border-[1px] border-gray-400 px-4"
-              id="homeAddress"
+              className=" mb-3 h-10 w-64  border-[1px] border-gray-400 px-4"
+              id="secondName"
               type="text"
-              placeholder="Rainbow resort"
+              placeholder="Second name"
             />
+              <label className=" text-left" htmlFor="fname">
+            Contact
+            </label>
             <input
-              className=" mb-3 h-10 w-72  border-[1px] border-gray-400 px-4"
-              id="officeAddress"
+              className=" mb-3 h-10 w-64 border-[1px] border-gray-400 px-4"
+              id="contact"
               type="text"
-              placeholder="Raphta Road"
+              placeholder="Contact"
             />
+              <label className=" text-left" htmlFor="fname">
+            City / Town
+            </label>
             <input
-              className=" mb-3 h-10 w-72  border-[1px] border-gray-400 px-4"
-              id="primaryAddress"
+              className=" mb-3 h-10 w-64 border-[1px] border-gray-400 px-4"
+              id="town"
               type="text"
-              placeholder="Uthiru77"
+              placeholder="City/ Town"
             />
+              <label className=" text-left" htmlFor="fname">
+            Zip Code
+            </label>
             <input
-              className=" mb-3 h-10 w-72  border-[1px] border-gray-400 px-4"
-              id="primaryAddress"
+              className=" mb-3 h-10 w-64 border-[1px] border-gray-400 px-4"
+              id="zipCode"
               type="text"
-              placeholder="Uthiru77"
+              placeholder="Zip Code"
             />
           </div>
         </form>
 
-        <input
-          type={"submit"}
-          value="Submit"
-          className=" mb-2 h-10 w-36 bg-blue-300 ml-56"
-        />
-
-        <div className=" flex flex-col ">
-          <label className=" text-left" for="Note">
+        <div className=" flex flex-col  ">
+          <label className=" text-left" htmlFor="Note">
             Note
           </label>
-          <input
-            className=" mb-3 h-36 w-full m-7  border-[1px] border-gray-400 px-4"
+          {/* <input
+            className=" mb-3 h-36  m-7 border-[1px] border-gray-400 px-4"
             id="Email"
             type="text"
             value="mohamednasra@gmail.com"
-          />
+          /> */}
+          <input
+              className=" mb-3 h-36 border-[1px] border-gray-400 px-4"
+              id="country"
+              type="text"
+              placeholder="Country"
+            />
         </div>
       </div>
-      <div className="border-7 h-full w-96 mx-auto">
-        <h1 className="font-bold mt-5">Order summarry</h1>
+      <div className="mx-20 mt-20">
+         <table className="border w-96">
+        <tr>
+          <th>Order Summary</th>
+        </tr>
+        <tr>
+          <td>
+          <ul>
+      {cart.map((cart)=>(
+        <li key={cart.id}>
+        <div>
+          <img
+            className="w-[50px] h-[50px]"
+            src={cart.imageSrc}
+            alt={cart.name}
+          />
+          <strong>{cart.name}</strong> - ${cart.price} (
+          {cart.quantity})
+        
+        </div>
+        </li>
 
-        {cart.map((item) => (
-          <ul className="flex justify-between">
-            <li>({item.quantity})</li>
-            <li className="mb-7"> {item.name} </li>
-            <li>{item.price}</li>
+      ))}
+            
           </ul>
-        ))}
-        <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-black-700"></hr>
+          
+          
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+              </hr>
+            </td>
+        </tr>
+        <tr>  
+          <td>Subtotal</td> 
+          <td>ksh 1000</td> 
+          </tr>
+          <tr>  
+          <td>Shipping</td> 
+          <td>ksh 1000</td> 
+          </tr>
+          <tr>  
+          <td>Tax</td> 
+          <td>ksh 1000</td> 
+          </tr>
+          <tr>
+          <td>
+            <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+              </hr>
+            </td>
+        </tr>
+        <tr>
+          <td>Total</td>
+        </tr>
+        <tr>
+          <td>
+            <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+              </hr>
+            </td>
+        </tr>
+        <tr>
+          <td>Payment</td>
+        </tr>
+        
 
-        <h1 className="mt-7 ">Subtotal KES {getTotalPrice()}</h1>
-        <p> Shipping : KES 1340</p>
-        <p>Tax : KES 120</p>
-        <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-black-700"></hr>
-        <h1 className="mt-7 font-bold">TOTAL Ksh: {getTotalPrice()}</h1>
-        <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-black-700"></hr>
-        <h1 className="font-bold mb-5">Payment</h1>
-        <div className="flex justify-between">
-          <input
-            type={"submit"}
-            value="Mobile money"
-            className=" mb-5 h-10 w-36 bg-blue-300 rounded-xl ml-3 "
-          />
-          <input
-            type={"submit"}
-            value="Bank tranfer"
-            className=" mb-5 h-10 w-36 bg-blue-300 rounded-xl ml-3"
-          />
-          <input
-            type={"submit"}
-            value="Paypal"
-            className=" mb-5 h-10 w-36 bg-blue-300 rounded-xl ml-3  "
-          />
-        </div>
-        <input
-          type={"submit"}
-          value="Checkout"
-          className=" mb-5 h-10 w-36 bg-blue-300 rounded-xl ml-32 "
-        />
+        <tr>
+          <td>
+            <button>Mobile Money</button>
+          </td>
+          <td>
+            <button>Bank transfer</button>
+
+          </td>
+          <td>Paypal</td>
+        </tr>
+        <tr>
+          <td>
+            <button onClick={
+             () => alert('clicked!')
+            }>Checkout</button>
+          </td></tr>
+          <tr>
+          <td>
+            <button>Back to cart</button>
+          </td></tr>
+
+      </table>
+        
+        {/* <ul>
+          {cart.map((cart)=> (
+          <li key={cart.id}>
+            <strong>{cartItem.name}</strong> - ${cartItem.price} (
+                {cartItem.quantity})
+          </li>
+        )
+        )}</ul> */}
+        
       </div>
+    </div>
     </div>
   );
 };

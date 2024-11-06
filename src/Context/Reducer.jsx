@@ -2,10 +2,19 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 
 const addProductToCart = (product, state) => {
+  console.log("product", product)
+  console.log("state", state)
   const updatedCart = [...state.cart];
-  const updatedItemIndex = updatedCart.findIndex(
-    (item) => item.id === product.id
+
+  console.log('updatedcart', updatedCart)
+  
+
+  const updatedItemIndex = state.cart.findIndex(
+    (item) => item.id === product._id
   );
+
+  console.log('updatedItemIndex', updatedItemIndex)
+
 
   if (updatedItemIndex < 0) {
     updatedCart.push({ ...product, quantity: 1 });
@@ -16,6 +25,7 @@ const addProductToCart = (product, state) => {
     updatedItem.quantity++;
     updatedCart[updatedItemIndex] = updatedItem;
   }
+  console.log('updated cart before return', updatedCart)
   return { ...state, cart: updatedCart };
 };
 
